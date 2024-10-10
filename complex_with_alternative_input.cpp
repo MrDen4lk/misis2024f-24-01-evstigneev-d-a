@@ -4,11 +4,11 @@
 // структура для хранения и действий с комплексными числами
 struct Complex {
     Complex() {}; //констуктор от 0 аргументов
-    explicit Complex(const double real); // объявление констурктора от 1 аргумента без неявного вызова 
+    explicit Complex(const double real); // объявление констурктора от 1 аргумента без неявного изменения типа 
     Complex(const double real, const double imaginary); // объявление конструктора от 2 аргументов
     
     double re{ 0.0 }; // значение реальной части комплексного числа
-    double im{ 0.0 }; // значение мнимой части комлпекласного числа
+    double im{ 0.0 }; // значение мнимой части комлпекласного числа±
     static const char add_point{ '+' }; // разделение реальной и мнимой части комплексного числа при im >= 0
     static const char sub_point{ '-' }; // разделение реальной и мнимой части комплексного числа при im < 0
     static const char i_point{ 'i' }; // обозначение мнимой части комплексного числа
@@ -81,6 +81,7 @@ std::istream& Complex::read(std::istream& instream) {
         im = (point == Complex::add_point ? imaginary : -imaginary);
     } else {
         instream.setstate(std::ios_base::failbit);
+        std::cerr << "Incorrect type of input complex number\n";
     }
     return instream;
 }
@@ -206,12 +207,16 @@ bool test_modul(const std::string& str) {
     return instream.good();
 }
 
+
 int main() {
     Complex z;
-    std::cin >> z;
-    z /= Complex(1, 1);
-    std::cout << z << std::endl;
+    double a;
+    std::cin >> z >> a;
+    z /= Complex(a);
+    z = z - Complex(2);
+    std::cout << z << ' ' << a << std::endl;
     std::cout << (Complex(-2, 1) / Complex(1, -1)) << std::endl;
+    std::cout << Complex(2, 0) * 10 << std::endl;
     test_modul("8-9i");
 
     return 0;
