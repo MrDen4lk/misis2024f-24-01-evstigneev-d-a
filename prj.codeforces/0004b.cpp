@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
  
 int main() {
     int days = 0, sum_time = 0, min_time = 0, max_time = 0;
@@ -12,7 +13,7 @@ int main() {
     }
  
     if (sum_time < min_time || sum_time > max_time) {
-        std::cout << "NO";
+        std::cout << "NO" << std::endl;
         return 0;
     }
     std::cout << "YES" << std::endl;

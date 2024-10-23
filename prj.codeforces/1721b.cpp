@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 
 bool check_distance(std::pair<int, int> point, std::pair<int, int> lazer, int distance) {
     return ((std::abs(point.first - lazer.first) + std::abs(point.second - lazer.second)) <= distance);

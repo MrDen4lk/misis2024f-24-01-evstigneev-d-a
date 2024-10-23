@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
  
 void solve() {
     int n = 0;

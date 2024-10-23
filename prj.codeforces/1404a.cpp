@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
- 
+#include <iostream>
+#include <vector>
+
 void solve() {
     int n = 0;
     int k = 0;
