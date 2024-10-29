@@ -5,7 +5,12 @@
 
 // структура для хранения и действий с комплексными числами
 struct Complex {
-    Complex() {}; //констуктор от 0 аргументов
+    Complex() = default; // умолчательный констурктор
+
+    // копирующий конструктор
+    Complex(const Complex&) = default;
+    Complex(Complex&&) = default;
+
     explicit Complex(const double real) : re(real) {} // констурктор от 1 аргумента без неявного вызова 
     Complex(const double real, const double imaginary) : re(real), im(imaginary) {} // конструктор от 2 аргументов
     
@@ -15,17 +20,14 @@ struct Complex {
     static const char left_point{ '{' }; // левая граница записи комплексного числа
     static const char right_point{ '}' }; // правая граница записи комплексного числа
     static const char mid_point{ ',' }; // разделитель реальной и мнимой части при записи комплекасного числа
-    
+
+
     // присваивание
     Complex& operator=(const Complex&) = default;
     Complex& operator=(Complex&&) = default;
 
     // деструктор
     ~Complex() = default;
-
-    // сравние комплексного числа и комплексного числа
-    bool operator==(const Complex& rhs) noexcept;
-    bool operator!=(const Complex& rhs) noexcept;
         
     // унарный минус
     Complex operator-() const noexcept;
@@ -61,6 +63,10 @@ struct Complex {
     std::istream& read(std::istream& instream) noexcept;
 };
 
+// сравние комплексного числа и комплексного числа
+bool operator==(const Complex& lhs, const Complex& rhs) noexcept;
+bool operator!=(const Complex& lhs, const Complex& rhs) noexcept;
+
 // сложениe комплексного числа и комплексного числа
 Complex operator+(const Complex& lhs, const Complex& rhs) noexcept;
 
@@ -75,6 +81,9 @@ Complex operator-(const Complex& lhs, const Complex& rhs) noexcept;
 
 // вычитание вещественного числа из комплексного числа
 Complex operator-(const Complex& lhs, const double rhs) noexcept;
+
+// вычитание комплексного числа из вещественного числа
+Complex operator-(const double lhs, const Complex& rhs) noexcept;
 
 // умножение комплексного числа на вещественное число 
 Complex operator*(const Complex& lhs, const double rhs) noexcept;

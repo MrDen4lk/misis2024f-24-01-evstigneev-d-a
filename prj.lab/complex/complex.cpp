@@ -23,12 +23,12 @@ std::istream& Complex::read(std::istream& instream) noexcept {
     return instream;
 }
 
-bool Complex::operator==(const Complex& rhs) noexcept { 
-    return ((std::fabs(rhs.re - re) <= 2 * std::numeric_limits<double>::epsilon())
-    || (std::fabs(rhs.im - im) <= 2 * std::numeric_limits<double>::epsilon())); 
+bool operator==(const Complex& lhs, const Complex& rhs) noexcept { 
+    return ((std::fabs(rhs.re - lhs.re) <= 2 * std::numeric_limits<double>::epsilon())
+    && (std::fabs(rhs.im - lhs.im) <= 2 * std::numeric_limits<double>::epsilon())); 
     }
 
-bool Complex::operator!=(const Complex& rhs) noexcept {  { return !operator==(rhs); }; }
+bool operator!=(const Complex& lhs, const Complex& rhs) noexcept {  { return !(lhs == rhs); }; }
 
 Complex Complex::operator-() const noexcept { return Complex(-re, -im); }
 
@@ -50,6 +50,10 @@ Complex operator-(const Complex& lhs, const Complex& rhs) noexcept {
 
 Complex operator-(const Complex& lhs, const double rhs) noexcept {
     return Complex(lhs.re - rhs, lhs.im);
+}
+
+Complex operator-(const double lhs, const Complex& rhs) noexcept {
+    return Complex(lhs - rhs.re, -rhs.im);
 }
 
 Complex operator*(const Complex& lhs, const double rhs) noexcept {
