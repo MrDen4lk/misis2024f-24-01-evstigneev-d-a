@@ -35,13 +35,13 @@ add_executable(1405a 1405a.cpp)
 add_executable(1873c 1873c.cpp)
 add_executable(0339b 0339b.cpp)
 add_executable(1873d 1873d.cpp)
-#add_executable()
-#add_executable()
+add_executable(1405b 1405b.cpp)
+add_executable(1406a 1406a.cpp)
 
 #task_6
-#add_executable()
-#add_executable()
+add_executable(1406b 1406b.cpp)
+add_executable(1407a 1407a.cpp)
 
 #task_7
-#add_executable()
-#add_executable()
+add_executable(1407b 1407b.cpp)
+add_executable(1407c 1407c.cpp)
