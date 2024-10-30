@@ -1,5 +1,5 @@
 #include <complex/complex.hpp>
-#include <iostream>
+#include <sstream>
 
 std::ostream& Complex::write(std::ostream& outstream) const noexcept {
     return outstream << left_point << re << mid_point << im << right_point;
@@ -11,6 +11,7 @@ std::istream& Complex::read(std::istream& instream) noexcept {
     char left_point(0);
     char right_point(0);
     char mid_point(0);
+    
     instream >> left_point >> real >> mid_point >> imaginary >> right_point;
     if (instream.good()) {
         if ((mid_point == Complex::mid_point) && (left_point == Complex::left_point) && (right_point == Complex::right_point)) {

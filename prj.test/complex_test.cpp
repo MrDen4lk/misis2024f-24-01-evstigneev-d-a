@@ -4,6 +4,10 @@
 
 // тестирование ввода
 bool test_input(const std::string& inp) {
+    static int number_of_test = 0;
+    number_of_test++;
+    std::cout << "Test#" << number_of_test << ' ';
+
     std::istringstream istrm(inp);
 
     Complex t;
