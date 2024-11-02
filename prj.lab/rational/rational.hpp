@@ -1,21 +1,17 @@
 #ifndef RATIONAL_HPP
 #define RATIONAL_HPP
 
-#include <iosfwd>
 #include <numeric>
 
-
 // функция приведения числителя/знаменателя к несократимой дроби
-long long update(long long numerator, long long denominator, bool type) {
+inline long long update(long long numerator, long long denominator, bool type) {
     long long gcd_of_numbers = std::gcd(std::abs(numerator), std::abs(denominator));
-    numerator *= ((numerator < 0ll) + (denominator < 0ll) == 1 ? -1ll : 1ll);
-    numerator /= gcd_of_numbers;
-    denominator /= gcd_of_numbers;
+    numerator = (((numerator < 0ll) + (denominator < 0ll)) == 1 ? -std::abs(numerator) : std::abs(numerator)) / gcd_of_numbers;
+    denominator = std::abs(denominator) / gcd_of_numbers;
     if (type) {
         return numerator;
-    } else {
-        return denominator;
     }
+    return denominator;
 }
 
 struct Rational {
@@ -36,7 +32,7 @@ struct Rational {
     Rational(Rational&&) = default;
 
     // деструктор
-    ~Rational();
+    ~Rational() = default;
 
     // унарный минус
     Rational operator-() const noexcept;
