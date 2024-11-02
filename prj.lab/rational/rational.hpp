@@ -26,7 +26,7 @@ struct Rational {
 
     static const char left_point{'{'}; // левая граница записи рационального числа
     static const char mid_point{'/'}; // разделение числителя и знаменателя
-    static const char right_point{'}'}; // правая граница записи рационального числа
+    static const char right_point{'}'}; // кправая граница записи рационального числа
 
     Rational(const Rational&) = default;
     Rational(Rational&&) = default;
@@ -108,29 +108,58 @@ Rational operator/(const Rational& lhs, const long long rhs);
 // деление целого числа на рациональное число
 Rational operator/(const long long lhs, const Rational& rhs);
 
-// сравнение рациональных чисел
+// операция больше для рационального числа и рационального числа
 bool operator>(const Rational& lhs, const Rational& rhs) noexcept;
+
+// операция больше для рационального и целого числа
 bool operator>(const Rational& lhs, const long long rhs) noexcept;
+
+// операция больше для целого и рационального числа
 bool operator>(const long long lhs, const Rational& rhs) noexcept;
 
+// оперция не меньше для рационального числа и рационального числа
 bool operator>=(const Rational& lhs, const Rational& rhs) noexcept;
+
+// оперция не меньше для рационального числа и целого числа
 bool operator>=(const Rational& lhs, const long long rhs) noexcept;
+
+// оперция не меньше для целого числа и рационального числа
 bool operator>=(const long long lhs, const Rational& rhs) noexcept;
 
+// оперция меньше для рационального числа и рационального числа
 bool operator<(const Rational& lhs, const Rational& rhs) noexcept;
+
+// оперция меньше для рационального числа и целого числа
 bool operator<(const Rational& lhs, const long long rhs) noexcept;
+
+// оперция меньше для целого числа и рационального числа
 bool operator<(const long long lhs, const Rational& rhs) noexcept;
 
+// оперция не больше для рационального числа и рационального числа
 bool operator<=(const Rational& lhs, const Rational& rhs) noexcept;
+
+// оперция не больше для рационального числа и целого числа
 bool operator<=(const Rational& lhs, const long long rhs) noexcept;
+
+// оперция не больше для целого числа и рационального числа
 bool operator<=(const long long lhs, const Rational& rhs) noexcept;
 
+// операция сравнения на равенство рационального числа и рационального числа
 bool operator==(const Rational& lhs, const Rational& rhs) noexcept;
+
+// операция сравнения на равенство рационального числа и целого числа
 bool operator==(const Rational& lhs, const long long rhs) noexcept;
+
+// операция сравнения на равенство целого числа и рационального числа
 bool operator==(const long long lhs, const Rational& rhs) noexcept;
 
+// операция сравнения на неравенство рационального числа и рационального числа
 bool operator!=(const Rational& lhs, const Rational& rhs) noexcept;
+
+// операция сравнения на неравенство рационального числа и целого числа
 bool operator!=(const Rational& lhs, const long long rhs) noexcept;
+
+// операция сравнения на неравенство целого числа и рационального числа
 bool operator!=(const long long lhs, const Rational& rhs) noexcept;
 
 // форматированный вывод в поток outstream рационального числа
