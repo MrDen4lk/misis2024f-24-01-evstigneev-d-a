@@ -1,7 +1,6 @@
 #include <rational/rational.hpp>
 #include <sstream>
 #include <numeric>
-#include <iostream>
 
 std::ostream& Rational::write(std::ostream& outstream) const noexcept {
     return outstream << left_point << num << mid_point << den << right_point;
