@@ -36,8 +36,16 @@
 .vscode
 out
 
+# Clion
+.idea
+
 # Build Artifacts
 build
 build.*
 bin
 bin.*
+cmake_build
+cmake_build.*
+
+#Logs
+status.logs
