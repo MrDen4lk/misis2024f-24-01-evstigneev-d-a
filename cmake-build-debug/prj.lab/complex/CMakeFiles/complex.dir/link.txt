@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libcomplex.a CMakeFiles/complex.dir/complex.cpp.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib libcomplex.a
