@@ -44,8 +44,5 @@ build
 build.*
 bin
 bin.*
-cmake_build
-cmake_build.*
-
-#Logs
-status.logs
+cmake-build
+cmake-build.*
