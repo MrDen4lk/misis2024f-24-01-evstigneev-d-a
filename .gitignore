@@ -44,5 +44,5 @@ build
 build.*
 bin
 bin.*
-cmake-build
-cmake-build.*
+cmake-build-debug
+cmake-build-debug.*
