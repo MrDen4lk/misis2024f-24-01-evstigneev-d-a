@@ -112,37 +112,37 @@ void test_logic(const Rational& a = {1, 1}, const Rational& b = {1, 1}, const lo
     std::cout << "Third number: " << c << std::endl;
     std::cout << std::endl;
 
-    // тестрование операций >
+    // тестирование операций >
     std::cout << a << " > " << b << " -> " << (a > b ? "true" : "false") << std::endl;
     std::cout << a << " > " << c << " -> " << (a > c ? "true" : "false") << std::endl;
     std::cout << c << " > " << b << " -> " << (c > b ? "true" : "false") << std::endl;
     std::cout << std::endl;
 
-    // тестрование операций >=
+    // тестирование операций >=
     std::cout << a << " >= " << b << " -> " << (a >= b ? "true" : "false") << std::endl;
     std::cout << a << " >= " << c << " -> " << (a >= c ? "true" : "false") << std::endl;
     std::cout << c << " >= " << b << " -> " << (c >= b ? "true" : "false") << std::endl;
     std::cout << std::endl;
 
-    // тестрование операций <
+    // тестирование операций <
     std::cout << a << " < " << b << " -> " << (a < b ? "true" : "false") << std::endl;
     std::cout << a << " < " << c << " -> " << (a < c ? "true" : "false") << std::endl;
     std::cout << c << " < " << b << " -> " << (c < b ? "true" : "false") << std::endl;
     std::cout << std::endl;
 
-    // тестрование операций <=
+    // тестирование операций <=
     std::cout << a << " <= " << b << " -> " << (a <= b ? "true" : "false") << std::endl;
     std::cout << a << " <= " << c << " -> " << (a <= c ? "true" : "false") << std::endl;
     std::cout << c << " <= " << b << " -> " << (c <= b ? "true" : "false") << std::endl;
     std::cout << std::endl;
 
-    // тестрование операций ==
+    // тестирование операций ==
     std::cout << a << " == " << b << " -> " << (a == b ? "true" : "false") << std::endl;
     std::cout << a << " == " << c << " -> " << (a == c ? "true" : "false") << std::endl;
     std::cout << c << " == " << b << " -> " << (c == b ? "true" : "false") << std::endl;
     std::cout << std::endl;
 
-    // тестрование операций !=
+    // тестирование операций !=
     std::cout << a << " != " << b << " -> " << (a != b ? "true" : "false") << std::endl;
     std::cout << a << " != " << c << " -> " << (a != c ? "true" : "false") << std::endl;
     std::cout << c << " != " << b << " -> " << (c != b ? "true" : "false") << std::endl;
