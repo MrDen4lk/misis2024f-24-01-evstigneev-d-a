@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++ -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.1.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/1406b.dir/1406b.cpp.o -o /Users/evstigneevda/CLionProjects/misis2024f-24-01-evstigneev-d-a/bin.dbg/1406b
