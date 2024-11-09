@@ -5,8 +5,8 @@
 void solve() {
     int n = 0;
     std::cin >> n;
-    std::vector<long long> vec(n, 0);
-    for (long long& item : vec) {
+    std::vector<int64_t> vec(n, 0);
+    for (int64_t& item : vec) {
         std::cin >> item;
     }
 

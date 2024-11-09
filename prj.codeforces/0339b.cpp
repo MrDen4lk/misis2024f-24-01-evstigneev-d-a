@@ -5,7 +5,7 @@ void solve() {
     int m = 0;
     int now = 1;
     int house = 0;
-    long long cost = 0ll;
+    int64_t cost = 0ll;
     std::cin >> n >> m;
     
     for (int i = 0; i < m; i++) {

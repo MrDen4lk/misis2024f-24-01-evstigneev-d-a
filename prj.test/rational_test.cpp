@@ -8,7 +8,7 @@ bool test_input(const std::string& inp) {
     number_of_test++;
     std::cout << "Test#" << number_of_test << std::endl;
 
-    std::istringstream istrm(inp);
+    std::istringstream istrm{inp};
     Rational a;
     istrm >> a;
 
@@ -22,7 +22,7 @@ bool test_input(const std::string& inp) {
 }
 
 // тестирование арифметических операций
-void test_arithmetics(const Rational& a = {1, 1}, const Rational& b = {1, 1}, const long long c = 1ll) {
+void test_arithmetics(const Rational& a = {1, 1}, const Rational& b = {1, 1}, const int64_t c = 1ll) {
     static int number_of_test = 0;
     number_of_test++;
 
@@ -102,7 +102,7 @@ void test_arithmetics(const Rational& a = {1, 1}, const Rational& b = {1, 1}, co
 }
 
 // тестирование логических операций
-void test_logic(const Rational& a = {1, 1}, const Rational& b = {1, 1}, const long long c = 1ll) {
+void test_logic(const Rational& a = {1, 1}, const Rational& b = {1, 1}, const int64_t c = 1ll) {
     static int number_of_test = 0;
     number_of_test++;
 
@@ -151,21 +151,23 @@ void test_logic(const Rational& a = {1, 1}, const Rational& b = {1, 1}, const lo
 }
 
 int main() {
-    test_input("{1/ 3}");
-    test_input("{8/2}");
-    test_input("{4.9}");
-    test_input("4/ 16}");
-    test_input("{6/ -50");
-    test_input("{-1/-1}");
-    test_input("{1 /0}");
+    test_input("1/3");
+    //test_input("8/2");
+    //test_input("4.9");
+    //test_input("4/0");
+    //test_input("6,-50");
 
-    test_arithmetics({1, 2}, {1, 3}, 5);
-    test_arithmetics({5, 7}, {-4, 16}, -2);
-    test_arithmetics({10, 1}, {-2, 6}, 7);
+    Rational a;
+    std::cin >> a;
+    std::cout << a << std::endl;
 
-    test_logic({1, 2}, {1, 3}, 1);
-    test_logic({1, -2}, {-2, 4}, 2);
-    test_logic({10, 1}, {-5, -2}, 10);
+    //test_arithmetics({1, 2}, {1, 3}, 5);
+    //test_arithmetics({5, 7}, {-4, 16}, -2);
+    //test_arithmetics({10, 1}, {-2, 6}, 7);
+
+    //test_logic({1, 2}, {1, 3}, 1);
+    //test_logic({1, -2}, {-2, 4}, 2);
+    //test_logic({10, 1}, {-5, -2}, 10);
 
     return 0;
 }

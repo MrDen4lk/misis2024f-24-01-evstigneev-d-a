@@ -49,3 +49,9 @@ add_executable(1407c 1407c.cpp)
 #task_test
 add_executable(0915a 0915a.cpp)
 add_executable(1692c 1692c.cpp)
+
+#task_8
+add_executable(0136a 0136a.cpp)
+add_executable(0935b 0935b.cpp)
+add_executable(1501a 1501a.cpp)
+add_executable(1585a 1585a.cpp)
