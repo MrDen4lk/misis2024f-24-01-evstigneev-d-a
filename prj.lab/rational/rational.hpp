@@ -3,72 +3,75 @@
 
 #include <numeric>
 
-// функция приведения числителя/знаменателя к несократимой дроби
-inline int64_t update(int64_t numerator, int64_t denominator, bool type) {
-    int64_t gcd_of_numbers = std::gcd(std::abs(numerator), std::abs(denominator));
-    numerator = (((numerator < 0ll) + (denominator < 0ll)) == 1 ? -std::abs(numerator) : std::abs(numerator)) / gcd_of_numbers;
-    denominator = std::abs(denominator) / gcd_of_numbers;
-    if (type) {
-        return numerator;
-    }
-    return denominator;
-}
+class Rational {
+    public:
+        Rational() = default; // умолчательный конструктор
 
-struct Rational {
+        explicit Rational(const int64_t numerator) : num(numerator) {} // конструктор от 1 аргумента
+        Rational(const int64_t numerator, const int64_t denominator) // конструктор от 2 аргументов
+        : num(update(numerator, denominator, true)), den(update(numerator, denominator, false)) {}
 
-    Rational() = default; // умолчательный конструктор
+        Rational(const Rational&) = default;
+        Rational(Rational&&) = default;
 
-    explicit Rational(const int64_t numerator) : num(numerator) {} // конструктор от 1 аргумента
-    Rational(const int64_t numerator, const int64_t denominator) // конструктор от 2 аргументов
-    : num(update(numerator, denominator, true)), den(update(numerator, denominator, false)) {}
+        // деструктор
+        ~Rational() = default;
 
-    int64_t num{0ll}; // значение числителя
-    int64_t den{1ll}; // значение знаменателя
+        // унарный минус
+        Rational operator-() const noexcept;
 
-    static const char mid_point{'/'}; // разделение числителя и знаменателя
+        // присваивание
+        Rational& operator=(const Rational&) = default;
+        Rational& operator=(Rational&&) = default;
 
-    Rational(const Rational&) = default;
-    Rational(Rational&&) = default;
+        // сложение с целым числом с присвоением
+        Rational& operator+=(const int64_t rhs) noexcept;
 
-    // деструктор
-    ~Rational() = default;
+        // сложение с рациональным числом с присвоением
+        Rational& operator+=(const Rational& rhs) noexcept;
 
-    // унарный минус
-    Rational operator-() const noexcept;
+        // вычитание целого числа с присвоением
+        Rational& operator-=(const int64_t rhs) noexcept;
 
-    // присваивание
-    Rational& operator=(const Rational&) = default;
-    Rational& operator=(Rational&&) = default;
+        // вычитание рационального числа с присвоением
+        Rational& operator-=(const Rational& rhs) noexcept;
 
-    // сложение с целым числом с присвоением
-    Rational& operator+=(const int64_t rhs) noexcept;
+        // умножение на целое числа с присвоением
+        Rational& operator*=(const int64_t rhs) noexcept;
 
-    // сложение с рациональным числом с присвоением
-    Rational& operator+=(const Rational& rhs) noexcept;
+        // умножение на рациональное число с присвоением
+        Rational& operator*=(const Rational& rhs) noexcept;
 
-    // вычитание целого числа с присвоением
-    Rational& operator-=(const int64_t rhs) noexcept;
-    
-    // вычитание рационального числа с присвоением
-    Rational& operator-=(const Rational& rhs) noexcept;
+        // деление на целое число с присвоением
+        Rational& operator/=(const int64_t rhs);
 
-    // умножение на целое числа с присвоением
-    Rational& operator*=(const int64_t rhs) noexcept;
+        // деление на рациональное число с присвоением
+        Rational& operator/=(const Rational& rhs);
 
-    // умножение на рациональное число с присвоением
-    Rational& operator*=(const Rational& rhs) noexcept;
+        // сравнение на равенство
+        bool operator==(const Rational& rhs) const noexcept;
 
-    // деление на целое число с присвоением
-    Rational& operator/=(const int64_t rhs);
+        // сравнение на больше
+        bool operator>(const Rational &rhs) const noexcept;
 
-    // деление на рациональное число с присвоением
-    Rational& operator/=(const Rational& rhs);
+        // Форматированный вывод в поток outstream рационального числа в виде {num/den}
+        std::ostream& write(std::ostream& outstream) const noexcept;
 
-    // Форматированный вывод в поток outstream рационального числа в виде {num/den}
-    std::ostream& write(std::ostream& outstream) const noexcept;
+        // Форматированный ввод в поток instream рационального числа в виде {num/den}
+        std::istream& read(std::istream& instream) noexcept;
 
-    // Форматированный ввод в поток instream рационального числа в виде {num/den}
-    std::istream& read(std::istream& instream) noexcept;
+    private:
+        int64_t num{0ll}; // значение числителя
+        int64_t den{1ll}; // значение знаменателя
+
+        static const char mid_point{'/'}; // разделение числителя и знаменателя
+
+        // функция приведения числителя/знаменателя к несократимой дроби
+        static int64_t update(const int64_t numerator, const int64_t denominator, const bool type) {
+            int64_t gcd_of_numbers = std::gcd(std::abs(numerator), std::abs(denominator));
+            int64_t new_numerator = (((numerator < 0ll) + (denominator < 0ll)) == 1 ? -std::abs(numerator) : std::abs(numerator)) / gcd_of_numbers;
+            return (type ? new_numerator : std::abs(denominator) / gcd_of_numbers);
+        }
 };
 
 // сложение рационального числа и рационального числа
@@ -107,9 +110,6 @@ Rational operator/(const Rational& lhs, const int64_t rhs);
 // деление целого числа на рациональное число
 Rational operator/(const int64_t lhs, const Rational& rhs);
 
-// операция больше для рационального числа и рационального числа
-bool operator>(const Rational& lhs, const Rational& rhs) noexcept;
-
 // операция больше для рационального и целого числа
 bool operator>(const Rational& lhs, const int64_t rhs) noexcept;
 
@@ -142,9 +142,6 @@ bool operator<=(const Rational& lhs, const int64_t rhs) noexcept;
 
 // операция не больше для целого числа и рационального числа
 bool operator<=(const int64_t lhs, const Rational& rhs) noexcept;
-
-// операция сравнения на равенство рационального числа и рационального числа
-bool operator==(const Rational& lhs, const Rational& rhs) noexcept;
 
 // операция сравнения на равенство рационального числа и целого числа
 bool operator==(const Rational& lhs, const int64_t rhs) noexcept;

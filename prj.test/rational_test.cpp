@@ -152,22 +152,22 @@ void test_logic(const Rational& a = {1, 1}, const Rational& b = {1, 1}, const in
 
 int main() {
     test_input("1/3");
-    //test_input("8/2");
-    //test_input("4.9");
-    //test_input("4/0");
-    //test_input("6,-50");
+    test_input("8/2");
+    test_input("4.9");
+    test_input("4/0");
+    test_input("6,-50");
 
-    Rational a;
-    std::cin >> a;
-    std::cout << a << std::endl;
+    //Rational a;
+    //std::cin >> a;
+    //std::cout << a << std::endl;
 
-    //test_arithmetics({1, 2}, {1, 3}, 5);
-    //test_arithmetics({5, 7}, {-4, 16}, -2);
-    //test_arithmetics({10, 1}, {-2, 6}, 7);
+    test_arithmetics({1, 2}, {1, 3}, 5);
+    test_arithmetics({5, 7}, {-4, 16}, -2);
+    test_arithmetics({10, 1}, {-2, 6}, 7);
 
-    //test_logic({1, 2}, {1, 3}, 1);
-    //test_logic({1, -2}, {-2, 4}, 2);
-    //test_logic({10, 1}, {-5, -2}, 10);
+    test_logic({1, 2}, {1, 3}, 1);
+    test_logic({1, -2}, {-2, 4}, 2);
+    test_logic({10, 1}, {-5, -2}, 10);
 
     return 0;
 }
