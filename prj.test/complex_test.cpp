@@ -97,6 +97,19 @@ void test_arithmetics(const Complex& a = {1., 1.}, const Complex& b = {1., 1.}, 
     std::cout << a << " /= " << b << " | " << a << " -> " << extra_a_complex << std::endl;
     std::cout << a << " /= " << c << " | " << a << " -> " << extra_a_double << std::endl;
     std::cout << std::endl;
+}
+
+void test_logic(const Complex& a = {1., 1.}, const Complex& b = {1., 1.}, const double c = 1.) {
+    static int number_of_test = 0;
+    number_of_test++;
+    Complex extra_a_complex;
+    Complex extra_a_double;
+
+    std::cout << std::endl << "===========================Test#" << number_of_test << "===========================" << std::endl;
+    std::cout << "First complex number: " << a << std::endl;
+    std::cout << "Second complex number: " << b << std::endl;
+    std::cout << "Third double number: " << c << std::endl;
+    std::cout << std::endl;
 
     // тестирование операций сравнение
     std::cout << a << " == " << b << " -> " << (a == b) << std::endl;
@@ -117,4 +130,8 @@ int main() {
     test_arithmetics({1, 2}, {3, 4}, 1);
     test_arithmetics({-2, 4}, {-1, -5}, 5);
     test_arithmetics({7, 7}, {7, 7}, -5);
+
+    test_logic({1, 2}, {3, 4}, 1);
+    test_logic({-2, 4}, {-1, -5}, 5);
+    test_logic({7, 7}, {7, 7}, -5);
 }

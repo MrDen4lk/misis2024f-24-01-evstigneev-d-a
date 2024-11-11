@@ -8,22 +8,24 @@ std::ostream& Rational::write(std::ostream& outstream) const noexcept {
 }
 
 std::istream& Rational::read(std::istream& instream) noexcept {
+    std::string input = "";
+    std::getline(instream, input);
+    instream.clear();
+    input += " ";
+    std::istringstream istrm(input);
+
     int64_t numerator{0};
     int64_t denominator{1};
     char mid_point{'/'};
-    std::cout << "! " << instream.good() << std::endl;
-    instream >> numerator >> mid_point >> denominator;
-    std::cout << "! " << instream.good() << std::endl;
-    if (instream.good()) {
-        if (mid_point == Rational::mid_point) {
+    istrm >> numerator >> mid_point >> denominator;
+    if (istrm.good()) {
+        if (denominator != 0 && mid_point == Rational::mid_point) {
             int64_t gcd_of_numbers = std::gcd(std::abs(numerator), std::abs(denominator));
             num = (((numerator < 0ll) + (denominator < 0ll)) == 1 ? -std::abs(numerator) : std::abs(numerator)) / gcd_of_numbers;
             den = std::abs(denominator) / gcd_of_numbers;
         } else {
             instream.setstate(std::ios_base::failbit);
         }
-    } else {
-        std::cerr << "!: " << numerator << ' ' << mid_point << ' ' << denominator << std::endl;
     }
 
     return instream;

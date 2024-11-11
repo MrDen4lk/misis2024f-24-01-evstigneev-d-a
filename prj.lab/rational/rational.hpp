@@ -60,6 +60,10 @@ class Rational {
         // Форматированный ввод в поток instream рационального числа в виде {num/den}
         std::istream& read(std::istream& instream) noexcept;
 
+        static std::pair<int64_t, int64_t> data_for_testing(const Rational& lhs) {
+            return {lhs.num, lhs.den};
+        }
+
     private:
         int64_t num{0ll}; // значение числителя
         int64_t den{1ll}; // значение знаменателя

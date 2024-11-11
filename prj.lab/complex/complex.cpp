@@ -102,7 +102,7 @@ Complex& Complex::operator-=(const double rhs) noexcept {
 }
 
 Complex& Complex::operator*=(const Complex& rhs) noexcept {
-    double new_re = re = re * rhs.re - im * rhs.im;
+    double new_re = re * rhs.re - im * rhs.im;
     double new_im = re * rhs.im + im * rhs.re;
     re = new_re;
     im = new_im;

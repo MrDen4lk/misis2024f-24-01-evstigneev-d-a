@@ -11,7 +11,6 @@ bool test_input(const std::string& inp) {
     std::istringstream istrm{inp};
     Rational a;
     istrm >> a;
-
     if (istrm.good()) {
         std::cout << "Success: " << inp << " -> " << a << std::endl;
     } else {
@@ -151,15 +150,11 @@ void test_logic(const Rational& a = {1, 1}, const Rational& b = {1, 1}, const in
 }
 
 int main() {
-    test_input("1/3");
+    test_input("1/ 3");
     test_input("8/2");
     test_input("4.9");
     test_input("4/0");
     test_input("6,-50");
-
-    //Rational a;
-    //std::cin >> a;
-    //std::cout << a << std::endl;
 
     test_arithmetics({1, 2}, {1, 3}, 5);
     test_arithmetics({5, 7}, {-4, 16}, -2);
