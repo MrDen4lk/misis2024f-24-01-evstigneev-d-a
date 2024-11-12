@@ -60,9 +60,8 @@ class Rational {
         // Форматированный ввод в поток instream рационального числа в виде {num/den}
         std::istream& read(std::istream& instream) noexcept;
 
-        static std::pair<int64_t, int64_t> data_for_testing(const Rational& lhs) {
-            return {lhs.num, lhs.den};
-        }
+        // нахождение gcd двух чисел
+        static int64_t gcd(int64_t lhs, int64_t rhs);
 
     private:
         int64_t num{0ll}; // значение числителя
@@ -71,11 +70,7 @@ class Rational {
         static const char mid_point{'/'}; // разделение числителя и знаменателя
 
         // функция приведения числителя/знаменателя к несократимой дроби
-        static int64_t update(const int64_t numerator, const int64_t denominator, const bool type) {
-            int64_t gcd_of_numbers = std::gcd(std::abs(numerator), std::abs(denominator));
-            int64_t new_numerator = (((numerator < 0ll) + (denominator < 0ll)) == 1 ? -std::abs(numerator) : std::abs(numerator)) / gcd_of_numbers;
-            return (type ? new_numerator : std::abs(denominator) / gcd_of_numbers);
-        }
+        static int64_t update(const int64_t numerator, const int64_t denominator, const bool type);
 };
 
 // сложение рационального числа и рационального числа

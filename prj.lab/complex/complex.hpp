@@ -5,21 +5,21 @@
 
 // структура для хранения и действий с комплексными числами
 struct Complex {
-    Complex() = default; // умолчательный констурктор
+    Complex() = default; // умолчательный конструктор
 
     // копирующий конструктор
     Complex(const Complex&) = default;
     Complex(Complex&&) = default;
 
-    explicit Complex(const double real) : re(real) {} // констурктор от 1 аргумента без неявного вызова 
+    explicit Complex(const double real) : re(real) {} // конструктор от 1 аргумента без неявного вызова
     Complex(const double real, const double imaginary) : re(real), im(imaginary) {} // конструктор от 2 аргументов
     
     double re{ 0.0 }; // значение реальной части комплексного числа
-    double im{ 0.0 }; // значение мнимой части комлпекласного числа
+    double im{ 0.0 }; // значение мнимой части комплексного числа
     
     static const char left_point{ '{' }; // левая граница записи комплексного числа
     static const char right_point{ '}' }; // правая граница записи комплексного числа
-    static const char mid_point{ ',' }; // разделитель реальной и мнимой части при записи комплекасного числа
+    static const char mid_point{ ',' }; // разделитель реальной и мнимой части при записи комплексного числа
 
 
     // присваивание
@@ -63,11 +63,11 @@ struct Complex {
     std::istream& read(std::istream& instream) noexcept;
 };
 
-// сравние комплексного числа и комплексного числа
+// сравнение комплексного числа и комплексного числа
 bool operator==(const Complex& lhs, const Complex& rhs) noexcept;
 bool operator!=(const Complex& lhs, const Complex& rhs) noexcept;
 
-// сложениe комплексного числа и комплексного числа
+// сложение комплексного числа и комплексного числа
 Complex operator+(const Complex& lhs, const Complex& rhs) noexcept;
 
 // сложение комплексного числа и вещественного числа
