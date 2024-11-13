@@ -9,5 +9,5 @@ target_link_libraries(complex_doctest complex)
 add_executable(rational_doctest rational_doctest.cpp)
 target_link_libraries(rational_doctest rational)
 
-add_executable(arrayd_doctst arrayd_doctest.cpp)
+add_executable(arrayd_doctest arrayd_doctest.cpp)
 target_link_libraries(arrayd_doctst arrayd)
