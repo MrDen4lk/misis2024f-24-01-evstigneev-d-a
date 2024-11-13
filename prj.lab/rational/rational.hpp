@@ -1,7 +1,7 @@
 #ifndef RATIONAL_HPP
 #define RATIONAL_HPP
 
-#include <numeric>
+#include <iosfwd>
 
 class Rational {
     public:
@@ -163,4 +163,4 @@ inline std::ostream& operator<<(std::ostream& outstream, const Rational& rhs) no
 // Форматированный ввод из потока instream рационального числа
 inline std::istream& operator>>(std::istream& instream, Rational& rhs) noexcept { return rhs.read(instream); }
 
-#endif
+#endif //RATIONAL_HPP

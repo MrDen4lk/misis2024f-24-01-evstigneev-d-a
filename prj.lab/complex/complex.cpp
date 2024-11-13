@@ -79,6 +79,10 @@ Complex operator/(const Complex& lhs, const double rhs) {
     return Complex(lhs.re / rhs, lhs.im / rhs);
 }
 
+Complex operator/(const double lhs, const Complex& rhs) {
+    return Complex(lhs / rhs.re, lhs / rhs.im);
+}
+
 Complex& Complex::operator+=(const Complex& rhs) noexcept {
     re += rhs.re;
     im += rhs.im;

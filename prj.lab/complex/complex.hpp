@@ -97,6 +97,9 @@ Complex operator*(const Complex& lhs, const Complex& rhs) noexcept;
 // деление комплексного числа на вещественное число
 Complex operator/(const Complex& lhs, const double rhs);
 
+// деление вещественного числа на комплексное число
+Complex operator/(const double lhs, const Complex& rhs);
+
 // деление комплексного числа на комплексное число
 Complex operator/(const Complex& lhs, const Complex& rhs);
 
@@ -106,4 +109,4 @@ inline std::ostream& operator<<(std::ostream& outstream, const Complex& rhs) noe
 // Форматированный ввод из потока instream комплексного числа
 inline std::istream& operator>>(std::istream& instream, Complex& rhs) noexcept { return rhs.read(instream); }
 
-#endif
+#endif //COMPLEX_HPP
