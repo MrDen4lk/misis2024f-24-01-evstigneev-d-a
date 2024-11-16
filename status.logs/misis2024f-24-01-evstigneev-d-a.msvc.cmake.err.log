@@ -1,6 +1,5 @@
-CMake Warning:
-  Manually-specified variables were not used by the project:
-
-    BUILD_TO_CHECK_STUDENT
+CMake Error at prj.test/CMakeLists.txt:13 (target_link_libraries):
+  Cannot specify link libraries for target "arrayd_doctst" which is not built
+  by this project.
 
 
