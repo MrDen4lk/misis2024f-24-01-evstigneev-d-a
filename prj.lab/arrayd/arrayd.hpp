@@ -4,5 +4,4 @@
 #include <iosfwd>
 
 
-
 #endif //ARRAYD_HPP

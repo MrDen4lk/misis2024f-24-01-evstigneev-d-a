@@ -60,7 +60,7 @@ void solve() {
         }
     }
  
-    if (checker_left.size() == *checker_left.rbegin() && checker_right.size() == *checker_right.rbegin() && errors.empty()) {
+    if (static_cast<int>(checker_left.size()) == *checker_left.rbegin() && static_cast<int>(checker_right.size()) == *checker_right.rbegin() && errors.empty()) {
         answer++;
         all_answers.push_back(position_of_1.first + 1);
     }
@@ -77,7 +77,7 @@ void solve() {
         statistics_left[vec[i]]++;
         if (statistics_left[vec[i]] > 1) { break; }
         checker_left.insert(vec[i]);
-        if (checker_left.size() == *checker_left.rbegin() && checker_right.size() == *checker_right.rbegin() && errors.empty()) {
+        if (static_cast<int>(checker_left.size()) == *checker_left.rbegin() && static_cast<int>(checker_right.size()) == *checker_right.rbegin() && errors.empty()) {
             answer++;
             all_answers.push_back(checker_left.size());
         }

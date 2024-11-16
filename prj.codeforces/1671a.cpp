@@ -8,7 +8,7 @@ void solve() {
         std::cout << "NO" << std::endl;
         return;
     }
-    for (int i = 1; i < s.size() - 1; i++) {
+    for (size_t i = 1; i < s.size() - 1; i++) {
         if (s[i - 1] == s[i + 1] && s[i] != s[i + 1]) {
             std::cout << "NO" << std::endl;
             return;

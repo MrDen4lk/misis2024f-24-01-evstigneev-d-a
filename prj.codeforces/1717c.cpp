@@ -14,7 +14,7 @@ void solve() {
     }
 
     for (int i = 0; i < amount; i++) {
-        if (vec_old[i] > vec_new[i] || (vec_new[i] > vec_new[(i + 1) % amount] + 1) && vec_new[i] != vec_old[i]) {
+        if (vec_old[i] > vec_new[i] || ((vec_new[i] > vec_new[(i + 1) % amount] + 1) && vec_new[i] != vec_old[i])) {
             std::cout << "no" << std::endl;
             return;
         }

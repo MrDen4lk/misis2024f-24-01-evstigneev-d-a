@@ -19,14 +19,11 @@ void solve() {
  
     int cnt_0 = 0;
     int cnt_1 = 0;
-    int cnt = 0;
     for (int i = 0; i < k; i++) {
         if (s[i] == '0' || check[i % k] == '0') {
             cnt_0++;
         } else if (s[i] == '1' || check[i % k] == '1') {
             cnt_1++;
-        } else {
-            cnt++;
         }
     }
  

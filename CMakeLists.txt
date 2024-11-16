@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.20)
 
 project(misis2024f-24-01-evstigneev-d-a)
 
+set (CMAKE_CXX_FLAGS "-Wall -Wextra -Werror -Wpedantic -pedantic-errors")
+
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "cmake")
 set_property(GLOBAL PROPERTY CXX_STANDARD 20)
