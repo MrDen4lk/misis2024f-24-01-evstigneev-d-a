@@ -47,8 +47,11 @@ ArrayD<T> &ArrayD<T>::resize_memory() noexcept {
 
 
 template<class T>
-T& ArrayD<T>::operator[](int32_t index) {
-    return data_pointer[index];
+T& ArrayD<T>::operator[](int32_t position) {
+    if (position < 0 || position >= size_of_array) {
+        throw std::out_of_range("Index out of range");
+    }
+    return data_pointer[position];
 }
 
 template<class T>
