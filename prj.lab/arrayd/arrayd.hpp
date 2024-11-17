@@ -82,11 +82,11 @@ public:
     std::istream& read(std::istream& instream) noexcept;
 };
 
-// форматированный вывод в поток outstream рационального числа
+// форматированный вывод в поток outstream динамического массива
 template<class T>
 std::ostream& operator<<(std::ostream& outstream, const ArrayD<T>& rhs) noexcept { return rhs.write(outstream); }
 
-// Форматированный ввод из потока instream рационального числа
+// Форматированный ввод из потока instream динамичекого массива
 template<class T>
 std::istream& operator>>(std::istream& instream, ArrayD<T>& rhs) noexcept { return rhs.read(instream); }
 
