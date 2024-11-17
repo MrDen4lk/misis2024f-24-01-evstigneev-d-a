@@ -28,7 +28,7 @@ public:
     ArrayD& operator=(ArrayD&&) = default;
 
     // оператор обращения по индексу
-    T& operator[](int32_t index);
+    T& operator[](int32_t position);
 
     // количество элементов
     int32_t size() const noexcept;
