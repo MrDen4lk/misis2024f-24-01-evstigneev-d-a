@@ -86,7 +86,7 @@ public:
 template<class T>
 std::ostream& operator<<(std::ostream& outstream, const ArrayD<T>& rhs) noexcept { return rhs.write(outstream); }
 
-// Форматированный ввод из потока instream динамичекого массива
+// Форматированный ввод из потока instream динамического массива
 template<class T>
 std::istream& operator>>(std::istream& instream, ArrayD<T>& rhs) noexcept { return rhs.read(instream); }
 
