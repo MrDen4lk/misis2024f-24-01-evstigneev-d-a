@@ -6,50 +6,50 @@
 #include <iostream>
 
 TEST_CASE("[arrayd] - ctor") {
-    ArrayD<int64_t> a(4, 3);
+    ArrayD<std::int64_t> a(4, 3);
 
     a[1] = 10;
 
-    CHECK(!a.empty());
-    CHECK(a.size() == 4);
+    CHECK(!a.Empty());
+    CHECK(a.Size() == 4);
     CHECK(a[0] == 3);
     CHECK(a[1] == 10);
 
-    a.resize(10, 5);
+    a.Resize(10, 5);
 
-    CHECK(a.size() == 10);
-    CHECK(a.front() == 3);
-    CHECK(a.back() == 5);
-    CHECK(a.capacity() == 10);
+    CHECK(a.Size() == 10);
+    CHECK(a.Front() == 3);
+    CHECK(a.Back() == 5);
+    CHECK(a.Capacity() == 10);
 
-    a.push_back(20);
+    a.Push_back(20);
 
-    CHECK(a.back() == 20);
-    CHECK(a.size() == 11);
+    CHECK(a.Back() == 20);
+    CHECK(a.Size() == 11);
 
-    a.clear();
-    CHECK(a.empty());
+    a.Clear();
+    CHECK(a.Empty());
 
-    a.push_back(10);
+    a.Push_back(10);
     CHECK(a[0] == 10);
-    CHECK(a.size() == 1);
+    CHECK(a.Size() == 1);
 
-    a.insert(0, -1);
+    a.Insert(0, -1);
     CHECK(a[0] == -1);
-    a.erase(0);
+    a.Erase(0);
     CHECK(a[0] == 10);
 
     CHECK(*a.begin() == 10);
     CHECK(*a.end() == 10);
 
-    a.push_back(-10);
-    a.push_back(100);
+    a.Push_back(-10);
+    a.Push_back(100);
     CHECK((*(a.end() - 2)) == -10);
     CHECK(*a.rbegin() == 100);
 
-    a.pop_back();
-    CHECK(a[a.size() - 1] == -10);
-    a.insert(a.size() - 2, 100);
+    a.Pop_back();
+    CHECK(a[a.Size() - 1] == -10);
+    a.Insert(a.Size() - 2, 100);
     std::sort(a.begin(), a.end());
     CHECK(a[0] == -10);
     std::sort(a.rbegin(), a.rend());

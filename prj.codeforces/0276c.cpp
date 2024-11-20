@@ -42,7 +42,7 @@ int main() {
 
     std::sort(mas.rbegin(), mas.rend());
     std::sort(cnt_mas.rbegin(), cnt_mas.rend());
-    int64_t answer = 0ll;
+    std::int64_t answer = 0ll;
 
     for (int i = 0; i < n; i++) {
         answer += mas[i]  * 1ll * cnt_mas[i];

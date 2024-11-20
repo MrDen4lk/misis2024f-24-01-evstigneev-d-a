@@ -3,7 +3,7 @@
 void solve() {
     int n = 0;
     int item = 0;
-    int64_t answer = 0;
+    std::int64_t answer = 0;
     std::cin >> n;
     
     for (int i = 0; i < n; i++) {
