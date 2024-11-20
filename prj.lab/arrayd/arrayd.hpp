@@ -8,9 +8,9 @@ template<class T>
 class ArrayD {
 
 private:
-    ptrdiff_t size_of_array{0}; // количество элементов в массиве
-    ptrdiff_t size_of_memory{0}; // количество элементов в массиве под которые выделена память
-    T* data_pointer{nullptr}; // указатель на выделенную память
+    ptrdiff_t size_of_array_{0}; // количество элементов в массиве
+    ptrdiff_t size_of_memory_{0}; // количество элементов в массиве под которые выделена память
+    T* data_pointer_{nullptr}; // указатель на выделенную память
 
     ArrayD& Resize_memory() noexcept;
 public:
