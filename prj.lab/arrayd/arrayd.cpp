@@ -55,6 +55,15 @@ T& ArrayD<T>::operator[](ptrdiff_t position) {
 }
 
 template<class T>
+T ArrayD<T>::operator[](ptrdiff_t position) const {
+    if (position < 0 || position >= size_of_array_) {
+        throw std::out_of_range("Index out of range");
+    }
+    return *data_pointer_[position];
+}
+
+
+template<class T>
 ptrdiff_t ArrayD<T>::Size() const noexcept {
     return size_of_array_;
 }

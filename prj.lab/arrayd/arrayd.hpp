@@ -29,6 +29,7 @@ public:
 
     // оператор обращения по индексу
     T& operator[](ptrdiff_t position);
+    T operator[](ptrdiff_t position) const;
 
     // количество элементов
     ptrdiff_t Size() const noexcept;
