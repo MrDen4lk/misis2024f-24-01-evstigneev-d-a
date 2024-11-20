@@ -11,21 +11,14 @@ std::int64_t Rational::gcd(std::int64_t lhs, std::int64_t rhs) {
     return lhs;
 }
 
-std::int64_t Rational::update(const std::int64_t numerator, const std::int64_t denominator, const bool type) {
-    std::int64_t gcd_of_numbers = Rational::gcd(std::abs(numerator), std::abs(denominator));
-    std::int64_t new_numerator = (((numerator < 0ll) + (denominator < 0ll)) == 1 ? -std::abs(numerator) : std::abs(numerator)) / gcd_of_numbers;
-    return (type ? new_numerator : std::abs(denominator) / gcd_of_numbers);
-}
-
-std::pair<std::int64_t, std::int64_t> update_local(std::int64_t num, std::int64_t den) {
-    std::int64_t gcd_of_numbers = Rational::gcd(std::abs(num), std::abs(den));
-    num = (((num < 0ll) + (den < 0ll)) == 1 ? -std::abs(num) : std::abs(num)) / gcd_of_numbers;
-    den = std::abs(den) / gcd_of_numbers;
-    return {num, den};
+void Rational::update(std::int64_t num, std::int64_t den) {
+    std::int64_t gcd_of_numbers = gcd(std::abs(num), std::abs(den));
+    num_ = (((num < 0ll) + (den < 0ll)) == 1 ? -std::abs(num) : std::abs(num)) / gcd_of_numbers;
+    den_ = std::abs(den) / gcd_of_numbers;
 }
 
 std::ostream& Rational::write(std::ostream& outstream) const noexcept {
-    return outstream << num << mid_point << den;
+    return outstream << num_ << mid_point << den_;
 }
 
 std::istream& Rational::read(std::istream& instream) noexcept {
@@ -41,9 +34,7 @@ std::istream& Rational::read(std::istream& instream) noexcept {
     istrm >> numerator >> mid_point >> denominator;
     if (istrm.good()) {
         if (denominator != 0 && mid_point == Rational::mid_point) {
-            std::pair<std::int64_t, std::int64_t> new_number = update_local(numerator, denominator);
-            num = new_number.first;
-            den = new_number.second;
+            update(numerator, denominator);
         } else {
             instream.setstate(std::ios_base::failbit);
         }
@@ -52,82 +43,66 @@ std::istream& Rational::read(std::istream& instream) noexcept {
     return instream;
 }
 
-Rational Rational::operator-() const noexcept { return Rational(-num, den); }
+Rational Rational::operator-() const noexcept { return Rational(-num_, den_); }
 
 Rational& Rational::operator+=(const Rational& rhs) noexcept {
-    std::int64_t new_num = num * rhs.den + rhs.num * den;
-    std::int64_t new_den = den * rhs.den;
-    std::pair<std::int64_t, std::int64_t> new_number = update_local(new_num, new_den);
-    num = new_number.first;
-    den = new_number.second;
+    std::int64_t new_num = num_ * rhs.den_ + rhs.num_ * den_;
+    std::int64_t new_den = den_ * rhs.den_;
+    update(new_num, new_den);
     return *this;
 }
 
 Rational& Rational::operator+=(const std::int64_t rhs) noexcept {
-    num += den * rhs;
-    std::pair<std::int64_t, std::int64_t> new_number = update_local(num, den);
-    num = new_number.first;
-    den = new_number.second;
+    num_ += den_ * rhs;
+    update(num_, den_);
     return *this; 
 }
 
 Rational& Rational::operator-=(const Rational& rhs) noexcept {
-    std::int64_t new_num = num * rhs.den - rhs.num * den;
-    std::int64_t new_den = den * rhs.den;
-    std::pair<std::int64_t, std::int64_t> new_number = update_local(new_num, new_den);
-    num = new_number.first;
-    den = new_number.second;
+    std::int64_t new_num = num_ * rhs.den_ - rhs.num_ * den_;
+    std::int64_t new_den = den_ * rhs.den_;
+    update(new_num, new_den);
     return *this;
 }
 
 Rational& Rational::operator-=(const std::int64_t rhs) noexcept {
-    num -= den * rhs;
-    std::pair<std::int64_t, std::int64_t> new_number = update_local(num, den);
-    num = new_number.first;
-    den = new_number.second;
+    num_ -= den_ * rhs;
+    update(num_, den_);
     return *this;
 }
 
 Rational& Rational::operator*=(const Rational& rhs) noexcept {
-    num *= rhs.num;
-    den *= rhs.den;
-    std::pair<std::int64_t, std::int64_t> new_number = update_local(num, den);
-    num = new_number.first;
-    den = new_number.second;
+    num_ *= rhs.num_;
+    den_ *= rhs.den_;
+    update(num_, den_);
     return *this;
 }
 
 Rational& Rational::operator*=(const std::int64_t rhs) noexcept {
-    num *= rhs;
-    std::pair<std::int64_t, std::int64_t> new_number = update_local(num, den);
-    num = new_number.first;
-    den = new_number.second;
+    num_ *= rhs;
+    update(num_, den_);
     return *this;
 }
 
 Rational& Rational::operator/=(const Rational& rhs) {
-    num *= rhs.den;
-    den *= rhs.num;
-    std::pair<std::int64_t, std::int64_t> new_number = update_local(num, den);
-    num = new_number.first;
-    den = new_number.second;
+    num_ *= rhs.den_;
+    den_ *= rhs.num_;
+    update(num_, den_);
     return *this;
 }
 
 Rational& Rational::operator/=(const std::int64_t rhs) {
-    den *= rhs;
-    std::pair<std::int64_t, std::int64_t> new_number = update_local(num, den);
-    num = new_number.first;
-    den = new_number.second;
+    den_ *= rhs;
+    update(num_, den_);
     return *this;
 }
 
 bool Rational::operator==(const Rational& rhs) const noexcept {
-    return (num * rhs.den == den * rhs.num);
+    return (num_ * rhs.den_ == den_ * rhs.num_);
 }
 
 bool Rational::operator>(const Rational& rhs) const noexcept {
-    return (num * rhs.den > rhs.num * den);
+    return (num_ * rhs.den_ > rhs.num_ * den_);
 }
 
 Rational operator+(const Rational& lhs, const Rational& rhs) noexcept {

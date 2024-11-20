@@ -25,8 +25,8 @@ std::istream& Complex::read(std::istream& instream) noexcept {
 }
 
 bool operator==(const Complex& lhs, const Complex& rhs) noexcept { 
-    return ((std::fabs(rhs.re - lhs.re) <= 2 * std::numeric_limits<double>::epsilon())
-    && (std::fabs(rhs.im - lhs.im) <= 2 * std::numeric_limits<double>::epsilon())); 
+    return ((std::fabs(rhs.re - lhs.re) < std::numeric_limits<double>::epsilon())
+    && (std::fabs(rhs.im - lhs.im) < std::numeric_limits<double>::epsilon()));
     }
 
 bool operator!=(const Complex& lhs, const Complex& rhs) noexcept {  { return !(lhs == rhs); }; }

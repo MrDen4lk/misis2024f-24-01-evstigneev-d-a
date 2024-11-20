@@ -3,23 +3,29 @@
 
 #include <iosfwd>
 #include <cstdint>
+#include <stdexcept>
 
 class Rational {
 private:
-    std::int64_t num{0}; // значение числителя
-    std::int64_t den{1}; // значение знаменателя
+    std::int64_t num_{0}; // значение числителя
+    std::int64_t den_{1}; // значение знаменателя
 
     static const char mid_point{'/'}; // разделение числителя и знаменателя
 
     // функция приведения числителя/знаменателя к несократимой дроби
-    static std::int64_t update(const std::int64_t numerator, const std::int64_t denominator, const bool type);
+    void update(const std::int64_t numerator, const std::int64_t denominator);
 
 public:
     Rational() = default; // умолчательный конструктор
 
-    explicit Rational(const std::int64_t numerator) : num(numerator) {} // конструктор от 1 аргумента
+    explicit Rational(const std::int64_t numerator) : num_(numerator) {} // конструктор от 1 аргумента
     Rational(const std::int64_t numerator, const std::int64_t denominator) // конструктор от 2 аргументов
-    : num(update(numerator, denominator, true)), den(update(numerator, denominator, false)) {}
+    : num_(numerator), den_(denominator) {
+        if (0 == den_) {
+            throw std::invalid_argument("Zero denumenator in Rational ctor");
+        }
+        update(numerator, denominator);
+    }
 
     Rational(const Rational&) = default;
     Rational(Rational&&) = default;
