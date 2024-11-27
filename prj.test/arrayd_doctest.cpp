@@ -6,7 +6,7 @@
 #include <iostream>
 
 TEST_CASE("[arrayd] - ctor") {
-    ArrayD<std::int64_t> a(4, 3);
+    ArrayD a(4, 3);
 
     a[1] = 10;
 
@@ -36,7 +36,7 @@ TEST_CASE("[arrayd] - ctor") {
 
     a.Insert(0, -1);
     CHECK(a[0] == -1);
-    a.Erase(0);
+    a.Remove(0);
     CHECK(a[0] == 10);
 
     CHECK(*a.begin() == 10);
