@@ -11,3 +11,6 @@ target_link_libraries(rational_doctest rational)
 
 add_executable(arrayd_doctest arrayd_doctest.cpp)
 target_link_libraries(arrayd_doctest arrayd)
+
+add_executable(arrayt_doctest arrayt_doctest.cpp)
+target_link_libraries(arrayt_doctest arrayt)
