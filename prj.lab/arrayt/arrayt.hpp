@@ -106,14 +106,18 @@ void ArrayT<T>::Resize(std::ptrdiff_t size) {
     if (size_of_memory_ < size) {
         auto data = new T[size]{T()};
         if (0 < size) {
-            std::memcpy(data, data_pointer_, size_of_array_ * sizeof(*data_pointer_));
+            std::memcpy(data, data_pointer_.get(), size_of_array_ * sizeof(*data_pointer_.get()));
         }
-        std::swap(data_pointer_, data);
+        //std::swap(data_pointer_, data);
+        auto temp = data_pointer_.release();
+        data_pointer_.reset(data);
+        data = temp;
+
         delete[] data;
         size_of_memory_ = size;
     } else {
         if (size_of_array_ < size) {
-            std::memset(data_pointer_ + size, 0, (size - size_of_array_) * sizeof(*data_pointer_));
+            std::memset(data_pointer_.get() + size, 0, (size - size_of_array_) * sizeof(*data_pointer_.get()));
         }
     }
     size_of_array_ = size;
@@ -125,7 +129,7 @@ void ArrayT<T>::Remove(std::ptrdiff_t position) {
         throw std::out_of_range("Index out of range");
     }
     if (position != size_of_array_ - 1) {
-        std::memmove(data_pointer_ + position, data_pointer_ + position + 1, (size_of_array_ - position) * sizeof(T));
+        std::memmove(data_pointer_.get() + position, data_pointer_.get() + position + 1, (size_of_array_ - position) * sizeof(T));
     }
     Resize(size_of_array_ - 1);
 }
@@ -137,9 +141,9 @@ void ArrayT<T>::Insert(std::ptrdiff_t position, T value) {
     }
     Resize(size_of_array_ + 1);
     if (position != Size() - 1) {
-        std::memmove(data_pointer_ + position + 1, data_pointer_ + position, (size_of_array_ - position - 1) * sizeof(T));
+        std::memmove(data_pointer_.get() + position + 1, data_pointer_.get() + position, (size_of_array_ - position - 1) * sizeof(T));
     }
-    data_pointer_[position] = value;
+    data_pointer_.get()[position] = value;
 }
 
 template<class T>
@@ -152,7 +156,7 @@ void ArrayT<T>::Pop_back() noexcept {
 template<class T>
 void ArrayT<T>::Push_back(const T &value) {
     Resize(size_of_array_ + 1);
-    data_pointer_[size_of_array_ - 1] = value;
+    data_pointer_.get()[size_of_array_ - 1] = value;
 }
 
 template<class T>

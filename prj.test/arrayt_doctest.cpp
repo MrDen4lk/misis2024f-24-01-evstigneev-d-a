@@ -12,16 +12,17 @@ TEST_CASE("arrayt_doctest") {
 
     a[1] = 10;
     CHECK(a[1] == 10);
-    //a.Pop_back();
-    //CHECK(a.Size() == 3);
-    //a.Push_back(3);
-    //CHECK(a[a.Size() - 1] == 3);
+    a.Pop_back();
+    CHECK(a.Size() == 3);
+    a.Push_back(3);
+    CHECK(a[a.Size() - 1] == 3);
 
-    //a.Insert(3, 1);
-    //CHECK(a[3] == 1);
-    //a.Remove(3);
-    //CHECK(a[3] != 1);
-    //CHECK(a.Size() == 4);
+    a.Insert(3, 1);
+    CHECK(a[3] == 1);
+    a.Remove(3);
+    CHECK(a[3] != 1);
+    CHECK(a.Size() == 4);
 
-    //CHECK(!a.Empty());
+    a.Clear();
+    CHECK(a.Empty());
 }
