@@ -1,3 +1,8 @@
-//
-// Created by Denis Evstigneev on 04.12.2024.
-//
+#include <queuea/queuea.hpp>
+
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include <doctest/doctest.h>
+
+TEST_CASE("[queuea] - ctor") {
+    QueueA a;
+}
