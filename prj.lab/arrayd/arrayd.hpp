@@ -41,13 +41,13 @@ public:
     void Resize(std::ptrdiff_t size);
 
     // добавить в конец value
-    void Push_back(const double& value) noexcept;
+    void Push_back(const double& value);
 
     // получить значение последнего элементы
-    double Back() const noexcept;
+    double Back() const;
 
     // получить значение первого элемента
-    double Front() const noexcept;
+    double Front() const;
 
     // получить максимальное количеств элементов, влезающих в текущую память
     std::ptrdiff_t Capacity() const noexcept;

@@ -2,6 +2,7 @@
 #include <rational/rational.hpp>
 #include <sstream>
 #include <cstdint>
+#include <stdexcept>
 
 std::int64_t Rational::gcd(std::int64_t lhs, std::int64_t rhs) {
     while (rhs) {
@@ -22,7 +23,7 @@ std::ostream& Rational::write(std::ostream& outstream) const noexcept {
 }
 
 std::istream& Rational::read(std::istream& instream) noexcept {
-    std::string input = "";
+    std::string input = std::string();
     std::getline(instream, input);
     instream.clear();
     input += " ";
@@ -32,6 +33,9 @@ std::istream& Rational::read(std::istream& instream) noexcept {
     std::int64_t denominator{1};
     char mid_point{'/'};
     istrm >> numerator >> mid_point >> denominator;
+    if (denominator == 0) {
+        throw std::out_of_range("Zero denominator");
+    }
     if (istrm.good()) {
         if (denominator != 0 && mid_point == Rational::mid_point) {
             update(numerator, denominator);
@@ -85,6 +89,9 @@ Rational& Rational::operator*=(const std::int64_t rhs) noexcept {
 }
 
 Rational& Rational::operator/=(const Rational& rhs) {
+    if (rhs.num_ == 0) {
+        throw std::out_of_range("Division by zero");
+    }
     num_ *= rhs.den_;
     den_ *= rhs.num_;
     update(num_, den_);
@@ -92,6 +99,9 @@ Rational& Rational::operator/=(const Rational& rhs) {
 }
 
 Rational& Rational::operator/=(const std::int64_t rhs) {
+    if (rhs == 0) {
+        throw std::out_of_range("Division by zero");
+    }
     den_ *= rhs;
     update(num_, den_);
     return *this;

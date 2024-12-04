@@ -41,13 +41,16 @@ public:
     void Resize(std::ptrdiff_t size);
 
     // добавить в конец value
-    void Push_back(const T& value) noexcept;
+    void Push_back(const T& value);
 
     // получить значение последнего элементы
-    T Back() const noexcept;
+    T Back() const;
 
     // получить значение первого элемента
-    T Front() const noexcept;
+    T Front() const;
+
+    // очистить массив
+    void Clear() noexcept;
 
     // получить максимальное количеств элементов, влезающих в текущую память
     std::ptrdiff_t Capacity() const noexcept;
@@ -74,6 +77,9 @@ template<class T>
 ArrayT<T>::ArrayT(std::ptrdiff_t size)
     : size_of_array_(size)
     , size_of_memory_(size) {
+    if (size < 0) {
+        throw std::invalid_argument("ArrayD::Resize - non positive size");
+    }
     data_pointer_.reset(new T[size]{T()});
 }
 
@@ -85,6 +91,11 @@ std::ptrdiff_t ArrayT<T>::Size() const noexcept {
 template<class T>
 bool ArrayT<T>::Empty() const noexcept {
     return size_of_array_ == 0;
+}
+
+template<class T>
+void ArrayT<T>::Clear() noexcept {
+    Resize(0);
 }
 
 template<class T>
@@ -133,22 +144,30 @@ void ArrayT<T>::Insert(std::ptrdiff_t position, T value) {
 
 template<class T>
 void ArrayT<T>::Pop_back() noexcept {
-    Resize(size_of_array_ - 1);
+    if (size_of_memory_ != 0) {
+        Resize(size_of_array_ - 1);
+    }
 }
 
 template<class T>
-void ArrayT<T>::Push_back(const T &value) noexcept {
+void ArrayT<T>::Push_back(const T &value) {
     Resize(size_of_array_ + 1);
     data_pointer_[size_of_array_ - 1] = value;
 }
 
 template<class T>
-T ArrayT<T>::Back() const noexcept {
+T ArrayT<T>::Back() const {
+    if (size_of_array_ == 0) {
+        throw std::invalid_argument("No one element in array");
+    }
     return data_pointer_.get()[size_of_array_ - 1];
 }
 
 template<class T>
-T ArrayT<T>::Front() const noexcept {
+T ArrayT<T>::Front() const {
+    if (size_of_array_ == 0) {
+        throw std::invalid_argument("No one element in array");
+    }
     return data_pointer_.get()[0];
 }
 

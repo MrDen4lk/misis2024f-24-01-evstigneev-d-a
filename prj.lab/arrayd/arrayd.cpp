@@ -6,12 +6,15 @@
 ArrayD::ArrayD(const std::ptrdiff_t size)
     : size_of_array_(size)
     , size_of_memory_(size) {
+    if (size <= 0) {
+        throw std::invalid_argument("ArrayD::ArrayD - non positive size");
+    }
     data_pointer_ = new double[size]{0.0};
 }
 
 ArrayD::ArrayD(const ArrayD& array)
-    : size_of_memory_(array.size_of_memory_)
-    , size_of_array_(array.size_of_array_)
+    : size_of_array_(array.size_of_array_)
+    , size_of_memory_(array.size_of_memory_)
     , data_pointer_(new double[size_of_memory_]) {
     std::memcpy(data_pointer_, array.data_pointer_, size_of_array_ * sizeof(*data_pointer_));
 }
@@ -34,7 +37,6 @@ double ArrayD::operator[](const std::ptrdiff_t position) const {
     return data_pointer_[position];
 }
 
-
 std::ptrdiff_t ArrayD::Size() const noexcept {
     return size_of_array_;
 }
@@ -43,7 +45,7 @@ bool ArrayD::Empty() const noexcept {
     return (size_of_array_ == 0);
 }
 
-void ArrayD::Push_back(const double &value) noexcept {
+void ArrayD::Push_back(const double &value) {
     Resize(size_of_array_ + 1);
     data_pointer_[size_of_array_ - 1] = value;
 }
@@ -68,11 +70,17 @@ void ArrayD::Resize(const std::ptrdiff_t size) {
     size_of_array_ = size;
 }
 
-double ArrayD::Back() const noexcept {
+double ArrayD::Back() const {
+    if (size_of_memory_ == 0) {
+        throw std::invalid_argument("No one element in array");
+    }
     return data_pointer_[size_of_array_ - 1];
 }
 
-double ArrayD::Front() const noexcept {
+double ArrayD::Front() const {
+    if (size_of_memory_ == 0) {
+        throw std::invalid_argument("No one element in array");
+    }
     return data_pointer_[0];
 }
 
@@ -109,7 +117,9 @@ void ArrayD::Insert(std::ptrdiff_t position, double value) {
 }
 
 void ArrayD::Pop_back() noexcept {
-    Resize(size_of_array_ - 1);
+    if (size_of_array_ != 0) {
+        Resize(size_of_array_ - 1);
+    }
 }
 
 double* ArrayD::begin() const noexcept {
