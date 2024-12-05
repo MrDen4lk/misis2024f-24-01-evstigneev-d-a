@@ -22,7 +22,7 @@ std::ostream& Rational::write(std::ostream& outstream) const noexcept {
     return outstream << num_ << mid_point << den_;
 }
 
-std::istream& Rational::read(std::istream& instream) noexcept {
+std::istream& Rational::read(std::istream& instream) {
     std::string input = std::string();
     std::getline(instream, input);
     instream.clear();
@@ -34,7 +34,7 @@ std::istream& Rational::read(std::istream& instream) noexcept {
     char mid_point{'/'};
     istrm >> numerator >> mid_point >> denominator;
     if (denominator == 0) {
-        throw std::out_of_range("Zero denominator");
+        throw std::runtime_error("Zero denominator");
     }
     if (istrm.good()) {
         if (denominator != 0 && mid_point == Rational::mid_point) {
@@ -90,7 +90,7 @@ Rational& Rational::operator*=(const std::int64_t rhs) noexcept {
 
 Rational& Rational::operator/=(const Rational& rhs) {
     if (rhs.num_ == 0) {
-        throw std::out_of_range("Division by zero");
+        throw std::runtime_error("Division by zero");
     }
     num_ *= rhs.den_;
     den_ *= rhs.num_;
@@ -100,7 +100,7 @@ Rational& Rational::operator/=(const Rational& rhs) {
 
 Rational& Rational::operator/=(const std::int64_t rhs) {
     if (rhs == 0) {
-        throw std::out_of_range("Division by zero");
+        throw std::runtime_error("Division by zero");
     }
     den_ *= rhs;
     update(num_, den_);

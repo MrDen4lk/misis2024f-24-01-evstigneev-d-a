@@ -72,7 +72,7 @@ Complex operator*(const Complex& lhs, const Complex& rhs) noexcept {
 
 Complex operator/(const Complex& lhs, const Complex& rhs) {
     if (rhs.re == 0.0 && rhs.im == 0.0) {
-        throw std::out_of_range("Division by zero");
+        throw std::runtime_error("Division by zero");
     }
     double re = (lhs.re * lhs.im + rhs.re * rhs.im) / (lhs.im * lhs.im + rhs.im * rhs.im);
     double im = (lhs.im * rhs.re - lhs.re * rhs.im) / (lhs.im * lhs.im + rhs.im * rhs.im);
@@ -81,14 +81,14 @@ Complex operator/(const Complex& lhs, const Complex& rhs) {
 
 Complex operator/(const Complex& lhs, const double rhs) {
     if (rhs == 0.0) {
-        throw std::out_of_range("Division by zero");
+        throw std::runtime_error("Division by zero");
     }
     return Complex(lhs.re / rhs, lhs.im / rhs);
 }
 
 Complex operator/(const double lhs, const Complex& rhs) {
     if (rhs.re == 0.0 && rhs.im == 0.0) {
-        throw std::out_of_range("Division by zero");
+        throw std::runtime_error("Division by zero");
     }
     return Complex(lhs / rhs.re, lhs / rhs.im);
 }
@@ -131,7 +131,7 @@ Complex& Complex::operator*=(const double rhs) noexcept {
 
 Complex& Complex::operator/=(const Complex& rhs) {
     if (rhs.re == 0.0 && rhs.im == 0.0) {
-        throw std::out_of_range("Division by zero");
+        throw std::runtime_error("Division by zero");
     }
     double new_re = (re * im + rhs.re * rhs.im) / (im * im + rhs.im * rhs.im);
     double new_im = (im * rhs.re - re * rhs.im) / (im * im + rhs.im * rhs.im);
@@ -142,7 +142,7 @@ Complex& Complex::operator/=(const Complex& rhs) {
 
 Complex& Complex::operator/=(const double rhs) {
     if (rhs == 0.0) {
-        throw std::out_of_range("Division by zero");
+        throw std::runtime_error("Division by zero");
     }
     re /= rhs;
     im /= rhs;

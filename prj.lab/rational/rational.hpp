@@ -74,7 +74,7 @@ public:
     std::ostream& write(std::ostream& outstream) const noexcept;
 
     // Форматированный ввод в поток instream рационального числа в виде {num/den}
-    std::istream& read(std::istream& instream) noexcept;
+    std::istream& read(std::istream& instream);
 
     // нахождение gcd двух чисел
     static std::int64_t gcd(std::int64_t lhs, std::int64_t rhs);

@@ -8,8 +8,11 @@
 class QueueA {
 private:
     std::ptrdiff_t capacity_{0};
-    std::unique_ptr<std::uint8_t[]> head_{nullptr};
-    std::unique_ptr<std::uint8_t[]> tail_{nullptr};
+    std::ptrdiff_t head_{0};
+    std::ptrdiff_t tail_{0};
+    std::unique_ptr<std::uint8_t[]> data_;
+
+    void Resize();
 
 public:
     // Умолчательный конструктор
