@@ -7,6 +7,10 @@
 
 TEST_CASE("[arrayd] - ctor") {
     ArrayD a(4);
+    ArrayD b(4, 10);
+
+    CHECK(b[0] == b[3]);
+    CHECK(b[1] == 10);
 
     CHECK(a.Size() == 4);
 

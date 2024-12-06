@@ -3,13 +3,14 @@
 #include <cstddef>
 #include <iterator>
 
-ArrayD::ArrayD(const std::ptrdiff_t size)
+ArrayD::ArrayD(const std::ptrdiff_t size, const double value)
     : size_of_array_(size)
     , size_of_memory_(size) {
     if (size <= 0) {
         throw std::invalid_argument("ArrayD::ArrayD - non positive size");
     }
-    data_pointer_ = new double[size]{0.0};
+    data_pointer_ = new double[size]{value};
+    for (std::ptrdiff_t i = 0; i < size; i++) { data_pointer_[i] = value; }
 }
 
 ArrayD::ArrayD(const ArrayD& array)
@@ -72,14 +73,14 @@ void ArrayD::Resize(const std::ptrdiff_t size) {
 
 double ArrayD::Back() const {
     if (size_of_memory_ == 0) {
-        throw std::invalid_argument("No one element in array");
+        throw std::out_of_range("No one element in array");
     }
     return data_pointer_[size_of_array_ - 1];
 }
 
 double ArrayD::Front() const {
     if (size_of_memory_ == 0) {
-        throw std::invalid_argument("No one element in array");
+        throw std::out_of_range("No one element in array");
     }
     return data_pointer_[0];
 }

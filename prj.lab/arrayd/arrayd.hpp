@@ -14,11 +14,11 @@ private:
 
 public:
     // умолчательный конструктор
-    ArrayD() = default;
+    ArrayD() : size_of_array_(0), size_of_memory_(0), data_pointer_(nullptr) {};
 
     ArrayD(const ArrayD&);
 
-    explicit ArrayD(std::ptrdiff_t size = 0);
+    explicit ArrayD(std::ptrdiff_t size, double value = 0);
 
     // деструктор
     ~ArrayD();

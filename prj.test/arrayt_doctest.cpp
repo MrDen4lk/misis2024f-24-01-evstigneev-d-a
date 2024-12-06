@@ -7,6 +7,10 @@
 
 TEST_CASE("arrayt_doctest") {
     ArrayT<int> a(4);
+    ArrayT<int> b(4, 10);
+
+    CHECK(b[0] == b[3]);
+    CHECK(b[1] == 10);
 
     CHECK(a.Size() == 4);
 

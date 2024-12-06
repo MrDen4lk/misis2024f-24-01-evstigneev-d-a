@@ -15,11 +15,11 @@ private:
     std::unique_ptr<T[]> data_pointer_; // указатель на выделенную память
 public:
     // умолчательный конструктор
-    ArrayT() = default;
+    ArrayT() : size_of_array_(0), size_of_memory_(0), data_pointer_(nullptr) {};
 
     ArrayT(const ArrayT&);
 
-    explicit ArrayT(std::ptrdiff_t size = 0);
+    explicit ArrayT(std::ptrdiff_t size, T value = T());
 
     // деструктор
     ~ArrayT() = default;
@@ -74,13 +74,14 @@ ArrayT<T>::ArrayT(const ArrayT<T>& array)
 }
 
 template<class T>
-ArrayT<T>::ArrayT(std::ptrdiff_t size)
+ArrayT<T>::ArrayT(const std::ptrdiff_t size, const T value)
     : size_of_array_(size)
     , size_of_memory_(size) {
     if (size < 0) {
         throw std::invalid_argument("ArrayD::Resize - non positive size");
     }
-    data_pointer_.reset(new T[size]{T()});
+    data_pointer_.reset(new T[size]{value});
+    for (std::ptrdiff_t i = 0; i < size; i++) { data_pointer_[i] = value; }
 }
 
 template<class T>
@@ -162,7 +163,7 @@ void ArrayT<T>::Push_back(const T &value) {
 template<class T>
 T ArrayT<T>::Back() const {
     if (size_of_array_ == 0) {
-        throw std::invalid_argument("No one element in array");
+        throw std::out_of_range("No one element in array");
     }
     return data_pointer_.get()[size_of_array_ - 1];
 }
@@ -170,7 +171,7 @@ T ArrayT<T>::Back() const {
 template<class T>
 T ArrayT<T>::Front() const {
     if (size_of_array_ == 0) {
-        throw std::invalid_argument("No one element in array");
+        throw std::out_of_range("No one element in array");
     }
     return data_pointer_.get()[0];
 }
@@ -192,7 +193,7 @@ ArrayT<T>& ArrayT<T>::operator=(const ArrayT<T>& rhs) {
 template<class T>
 T& ArrayT<T>::operator[](const std::ptrdiff_t position) {
     if (position < 0 || size_of_array_ <= position) {
-        throw std::invalid_argument("ArrayD::operator[] - invalid argument");
+        throw std::out_of_range("ArrayD::operator[] - invalid argument");
     }
     return *(data_pointer_.get() + position);
 }
@@ -200,7 +201,7 @@ T& ArrayT<T>::operator[](const std::ptrdiff_t position) {
 template<class T>
 T ArrayT<T>::operator[](const std::ptrdiff_t position) const {
     if (position < 0 || size_of_array_ <= position) {
-        throw std::invalid_argument("ArrayD::operator[] - invalid argument");
+        throw std::out_of_range("ArrayD::operator[] - invalid argument");
     }
     return data_pointer_.get()[position];
 }
