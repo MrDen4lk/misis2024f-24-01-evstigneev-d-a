@@ -8,6 +8,7 @@
 class QueueA {
 private:
     std::ptrdiff_t capacity_{0};
+    std::ptrdiff_t size_{0};
     std::ptrdiff_t head_{0};
     std::ptrdiff_t tail_{0};
     std::unique_ptr<std::uint8_t[]> data_;

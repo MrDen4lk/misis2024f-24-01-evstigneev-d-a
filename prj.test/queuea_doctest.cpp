@@ -16,4 +16,8 @@ TEST_CASE("[queuea] - ctor") {
     CHECK(a.Top() == 20);
     a.Clear();
     CHECK(a.IsEmpty());
+
+    a.Push(30);
+    CHECK(!a.IsEmpty());
+    CHECK(a.Top() == 30);
 }
