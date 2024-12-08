@@ -71,26 +71,15 @@ Complex operator*(const Complex& lhs, const Complex& rhs) noexcept {
 }
 
 Complex operator/(const Complex& lhs, const Complex& rhs) {
-    if (rhs.re == 0.0 && rhs.im == 0.0) {
-        throw std::runtime_error("Division by zero");
-    }
-    double re = (lhs.re * lhs.im + rhs.re * rhs.im) / (lhs.im * lhs.im + rhs.im * rhs.im);
-    double im = (lhs.im * rhs.re - lhs.re * rhs.im) / (lhs.im * lhs.im + rhs.im * rhs.im);
-    return Complex(re, im);
+    return Complex(lhs) /= rhs;
 }
 
 Complex operator/(const Complex& lhs, const double rhs) {
-    if (rhs == 0.0) {
-        throw std::runtime_error("Division by zero");
-    }
-    return Complex(lhs.re / rhs, lhs.im / rhs);
+    return Complex(lhs) /= rhs;
 }
 
 Complex operator/(const double lhs, const Complex& rhs) {
-    if (rhs.re == 0.0 && rhs.im == 0.0) {
-        throw std::runtime_error("Division by zero");
-    }
-    return Complex(lhs / rhs.re, lhs / rhs.im);
+    return Complex(lhs) /= rhs;
 }
 
 Complex& Complex::operator+=(const Complex& rhs) noexcept {
@@ -133,8 +122,8 @@ Complex& Complex::operator/=(const Complex& rhs) {
     if (rhs.re == 0.0 && rhs.im == 0.0) {
         throw std::runtime_error("Division by zero");
     }
-    double new_re = (re * im + rhs.re * rhs.im) / (im * im + rhs.im * rhs.im);
-    double new_im = (im * rhs.re - re * rhs.im) / (im * im + rhs.im * rhs.im);
+    double new_re = (re * rhs.re + im * rhs.im) / (rhs.re * rhs.re + rhs.im * rhs.im);
+    double new_im = (im * rhs.re - re * rhs.im) / (rhs.re * rhs.re + rhs.im * rhs.im);
     re = new_re;
     im = new_im;
     return *this;
