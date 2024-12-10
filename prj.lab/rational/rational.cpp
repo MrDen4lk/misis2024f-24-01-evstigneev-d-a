@@ -23,35 +23,34 @@ std::ostream& Rational::write(std::ostream& outstream) const noexcept {
 }
 
 std::istream& Rational::read(std::istream& instream) {
-    std::string input = std::string();
-    std::getline(instream, input);
-    instream.clear();
-    input += " ";
-    std::istringstream istrm(input);
-
     std::int64_t numerator{0};
     std::int64_t denominator{1};
     char mid_point{'/'};
-    istrm >> numerator >> mid_point >> denominator;
+    instream >> numerator >> mid_point >> denominator;
     if (denominator == 0) {
         throw std::runtime_error("Zero denominator");
     }
-    if (istrm.good()) {
-        if (denominator != 0 && mid_point == Rational::mid_point) {
+    if (instream.good() || instream.eof()) {
+        if (mid_point == Rational::mid_point) {
             update(numerator, denominator);
         } else {
             instream.setstate(std::ios_base::failbit);
         }
     }
+    if (instream.eof()) {
+        instream.clear();
+    }
 
     return instream;
 }
 
-Rational Rational::operator-() const noexcept { return Rational(-num_, den_); }
+Rational Rational::operator-() const noexcept {
+    return Rational(-num_, den_);
+}
 
 Rational& Rational::operator+=(const Rational& rhs) noexcept {
-    std::int64_t new_num = num_ * rhs.den_ + rhs.num_ * den_;
-    std::int64_t new_den = den_ * rhs.den_;
+    const std::int64_t new_num = num_ * rhs.den_ + rhs.num_ * den_;
+    const std::int64_t new_den = den_ * rhs.den_;
     update(new_num, new_den);
     return *this;
 }
@@ -63,8 +62,8 @@ Rational& Rational::operator+=(const std::int64_t rhs) noexcept {
 }
 
 Rational& Rational::operator-=(const Rational& rhs) noexcept {
-    std::int64_t new_num = num_ * rhs.den_ - rhs.num_ * den_;
-    std::int64_t new_den = den_ * rhs.den_;
+    const std::int64_t new_num = num_ * rhs.den_ - rhs.num_ * den_;
+    const std::int64_t new_den = den_ * rhs.den_;
     update(new_num, new_den);
     return *this;
 }

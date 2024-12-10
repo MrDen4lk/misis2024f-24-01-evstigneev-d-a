@@ -3,7 +3,6 @@
 #ifndef ARRAYD_HPP
 #define ARRAYD_HPP
 
-#include <iterator>
 #include <cstddef>
 
 class ArrayD {
@@ -14,18 +13,17 @@ private:
 
 public:
     // умолчательный конструктор
-    ArrayD() : size_of_array_(0), size_of_memory_(0), data_pointer_(nullptr) {};
+    ArrayD() = default;
 
     ArrayD(const ArrayD&);
 
-    explicit ArrayD(std::ptrdiff_t size, double value = 0);
+    ArrayD(const std::ptrdiff_t size);
 
     // деструктор
     ~ArrayD();
 
     // присваивание
-    ArrayD& operator=(const ArrayD&) = default;
-    ArrayD& operator=(ArrayD&&) = default;
+    ArrayD& operator=(const ArrayD&);
 
     // оператор обращения по индексу
     double& operator[](std::ptrdiff_t position);
@@ -34,47 +32,14 @@ public:
     // количество элементов
     std::ptrdiff_t Size() const noexcept;
 
-    // проверка на пустоту
-    bool Empty() const noexcept;
-
     // изменить размер на size и заполнить новые элементы value
     void Resize(std::ptrdiff_t size);
-
-    // добавить в конец value
-    void Push_back(const double& value);
-
-    // получить значение последнего элементы
-    double Back() const;
-
-    // получить значение первого элемента
-    double Front() const;
-
-    // получить максимальное количеств элементов, влезающих в текущую память
-    std::ptrdiff_t Capacity() const noexcept;
-
-    // очистить массив
-    void Clear() noexcept;
 
     // вставить на место position значение value
     void Insert(std::ptrdiff_t position, double value);
 
     // удалить позицию position
     void Remove(std::ptrdiff_t position);
-
-    // удалить последний элемент
-    void Pop_back() noexcept;
-
-    // получить указатель на начало
-    double* begin() const noexcept;
-
-    // получить перевернутый указатель на начало
-    std::reverse_iterator<double*> rbegin() const noexcept;
-
-    // получить указатель на конец
-    double* end() const noexcept;
-
-    // получить перевернутый указатель н конец
-    std::reverse_iterator<double*> rend() const noexcept;
 };
 
 #endif //ARRAYD_HPP

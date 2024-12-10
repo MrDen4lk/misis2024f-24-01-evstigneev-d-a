@@ -28,46 +28,46 @@ std::istream& Complex::read(std::istream& instream) noexcept {
 bool operator==(const Complex& lhs, const Complex& rhs) noexcept { 
     return ((std::fabs(rhs.re - lhs.re) < std::numeric_limits<double>::epsilon())
     && (std::fabs(rhs.im - lhs.im) < std::numeric_limits<double>::epsilon()));
-    }
+}
 
 bool operator!=(const Complex& lhs, const Complex& rhs) noexcept {  { return !(lhs == rhs); }; }
 
 Complex Complex::operator-() const noexcept { return Complex(-re, -im); }
 
 Complex operator+(const Complex& lhs, const Complex& rhs) noexcept {
-    return Complex(rhs.re + lhs.re, rhs.im + lhs.im);
+    return Complex(lhs) += rhs;
 }
 
 Complex operator+(const double lhs, const Complex& rhs) noexcept {
-    return Complex(rhs.re + lhs, rhs.im);
+    return Complex(lhs) += rhs;
 }
 
 Complex operator+(const Complex& lhs, const double rhs) noexcept {
-    return Complex(lhs.re + rhs, lhs.im);
+    return Complex(lhs) += rhs;
 }
 
 Complex operator-(const Complex& lhs, const Complex& rhs) noexcept {
-    return Complex(lhs.re - rhs.re, lhs.im - rhs.im);
+    return Complex(lhs) -= rhs;
 }
 
 Complex operator-(const Complex& lhs, const double rhs) noexcept {
-    return Complex(lhs.re - rhs, lhs.im);
+    return Complex(lhs) -= rhs;
 }
 
 Complex operator-(const double lhs, const Complex& rhs) noexcept {
-    return Complex(lhs - rhs.re, -rhs.im);
+    return Complex(lhs) -= rhs;
 }
 
 Complex operator*(const Complex& lhs, const double rhs) noexcept {
-    return Complex(lhs.re * rhs, lhs.im * rhs);
+    return Complex(lhs) *= rhs;
 }
 
 Complex operator*(const double lhs, const Complex& rhs) noexcept {
-    return Complex(lhs * rhs.re, lhs * rhs.im);
+    return Complex(lhs) *= rhs;
 }
 
 Complex operator*(const Complex& lhs, const Complex& rhs) noexcept {
-    return Complex(lhs.re * rhs.re - lhs.im * rhs.im, lhs.re * rhs.im + lhs.im * rhs.re);
+    return Complex(lhs) *= rhs;
 }
 
 Complex operator/(const Complex& lhs, const Complex& rhs) {
@@ -105,8 +105,8 @@ Complex& Complex::operator-=(const double rhs) noexcept {
 }
 
 Complex& Complex::operator*=(const Complex& rhs) noexcept {
-    double new_re = re * rhs.re - im * rhs.im;
-    double new_im = re * rhs.im + im * rhs.re;
+    const double new_re = re * rhs.re - im * rhs.im;
+    const double new_im = re * rhs.im + im * rhs.re;
     re = new_re;
     im = new_im;
     return *this;
@@ -122,8 +122,8 @@ Complex& Complex::operator/=(const Complex& rhs) {
     if (rhs.re == 0.0 && rhs.im == 0.0) {
         throw std::runtime_error("Division by zero");
     }
-    double new_re = (re * rhs.re + im * rhs.im) / (rhs.re * rhs.re + rhs.im * rhs.im);
-    double new_im = (im * rhs.re - re * rhs.im) / (rhs.re * rhs.re + rhs.im * rhs.im);
+    const double new_re = (re * rhs.re + im * rhs.im) / (rhs.re * rhs.re + rhs.im * rhs.im);
+    const double new_im = (im * rhs.re - re * rhs.im) / (rhs.re * rhs.re + rhs.im * rhs.im);
     re = new_re;
     im = new_im;
     return *this;

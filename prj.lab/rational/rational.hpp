@@ -70,10 +70,10 @@ public:
     // сравнение на больше
     bool operator>(const Rational &rhs) const noexcept;
 
-    // Форматированный вывод в поток outstream рационального числа в виде {num/den}
+    // Форматированный вывод в поток outstream рационального числа в виде num/den
     std::ostream& write(std::ostream& outstream) const noexcept;
 
-    // Форматированный ввод в поток instream рационального числа в виде {num/den}
+    // Форматированный ввод в поток instream рационального числа в виде num/den
     std::istream& read(std::istream& instream);
 
     // нахождение gcd двух чисел

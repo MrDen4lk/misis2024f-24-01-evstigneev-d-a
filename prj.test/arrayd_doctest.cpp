@@ -3,7 +3,8 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <doctest/doctest.h>
 #include <algorithm>
-#include <iostream>
+
+#include "rational/rational.hpp"
 
 TEST_CASE("[arrayd] - ctor") {
     ArrayD a(4);
