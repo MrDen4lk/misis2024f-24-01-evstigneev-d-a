@@ -16,7 +16,7 @@ public:
     QueueA(QueueA&& src) noexcept;
 
     // деструктор
-    ~QueueA();
+    ~QueueA() = default;
 
     // оператор копирование
     QueueA& operator=(const QueueA& src);

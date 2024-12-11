@@ -7,8 +7,8 @@
 class StackL {
 public:
     using T = std::uint8_t;
-public:
-    // Умолчательный конструктор
+
+    // Умолчательный конструкторй
     StackL() = default;
 
     // Деструктор

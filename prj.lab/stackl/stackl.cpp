@@ -40,38 +40,7 @@ bool StackL::IsEmpty() const noexcept {
 }
 
 StackL& StackL::operator=(const StackL& src) {
-    if (this != &src) {
-        if (src.IsEmpty()) {
-            Clear();
-        } else {
-            std::unique_ptr<Node> p_src = std::move(head_);
-            if (IsEmpty()) {
-                head_.reset(new Node(src.head_->value_));
-            } else {
-                head_->value_ = src.head_->value_;
-            }
-            std::unique_ptr<Node> p_dst = std::move(head_);
-            while (p_src->next_) {
-                if (p_dst->next_) {
-                    p_dst->next_->value_ = p_src->next_->value_;
-                } else {
-                    p_dst->next_.reset(new Node(p_src->next_->value_));
-                }
-                p_src = std::move(p_src->next_);
-                p_dst = std::move(p_dst->next_);
-            }
-            if (p_dst->next_) {
-                std::unique_ptr<Node> tail = std::move(p_dst->next_->next_);
-                while (p_dst->next_) {
-                    delete p_dst->next_;
-                    p_dst->next_ = nullptr;
-                    p_dst = std::move(tail);
-                }
-            }
-        }
-    }
 
-    return *this;
 }
 
 StackL& StackL::operator=(StackL&& src) noexcept {
