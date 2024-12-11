@@ -6,15 +6,6 @@
 #include <stdexcept>
 
 class Rational {
-private:
-    std::int64_t num_{0}; // значение числителя
-    std::int64_t den_{1}; // значение знаменателя
-
-    static const char mid_point{'/'}; // разделение числителя и знаменателя
-
-    // функция приведения числителя/знаменателя к несократимой дроби
-    void update(const std::int64_t numerator, const std::int64_t denominator);
-
 public:
     Rational() = default; // умолчательный конструктор
 
@@ -78,6 +69,15 @@ public:
 
     // нахождение gcd двух чисел
     static std::int64_t gcd(std::int64_t lhs, std::int64_t rhs);
+
+private:
+    std::int64_t num_{0}; // значение числителя
+    std::int64_t den_{1}; // значение знаменателя
+
+    static const char mid_point{'/'}; // разделение числителя и знаменателя
+
+    // функция приведения числителя/знаменателя к несократимой дроби
+    void update(const std::int64_t numerator, const std::int64_t denominator);
 };
 
 // сложение рационального числа и рационального числа

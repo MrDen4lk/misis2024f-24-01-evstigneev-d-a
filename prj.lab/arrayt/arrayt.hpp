@@ -9,10 +9,6 @@
 
 template<class T>
 class ArrayT {
-private:
-    std::ptrdiff_t size_of_array_{0}; // количество элементов в массиве
-    std::ptrdiff_t size_of_memory_{0}; // количество элементов в массиве под которые выделена память
-    std::unique_ptr<T[]> data_pointer_; // указатель на выделенную память
 public:
     // умолчательный конструктор
     ArrayT() : size_of_array_(0), size_of_memory_(0), data_pointer_(nullptr) {};
@@ -63,6 +59,11 @@ public:
 
     // удалить последний элемент
     void Pop_back() noexcept;
+
+private:
+    std::ptrdiff_t size_of_array_{0}; // количество элементов в массиве
+    std::ptrdiff_t size_of_memory_{0}; // количество элементов в массиве под которые выделена память
+    std::unique_ptr<T[]> data_pointer_; // указатель на выделенную память
 };
 
 template<class T>

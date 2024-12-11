@@ -6,11 +6,6 @@
 #include <cstddef>
 
 class ArrayD {
-private:
-    std::ptrdiff_t size_of_array_{0}; // количество элементов в массиве
-    std::ptrdiff_t size_of_memory_{0}; // количество элементов в массиве под которые выделена память
-    double* data_pointer_{nullptr}; // указатель на выделенную память
-
 public:
     // умолчательный конструктор
     ArrayD() = default;
@@ -32,14 +27,19 @@ public:
     // количество элементов
     std::ptrdiff_t Size() const noexcept;
 
-    // изменить размер на size и заполнить новые элементы value
-    void Resize(std::ptrdiff_t size);
+    // изменить размер на size
+    void Resize(const std::ptrdiff_t size);
 
     // вставить на место position значение value
-    void Insert(std::ptrdiff_t position, double value);
+    void Insert(const std::ptrdiff_t position, double value);
 
     // удалить позицию position
-    void Remove(std::ptrdiff_t position);
+    void Remove(const std::ptrdiff_t position);
+
+private:
+    std::ptrdiff_t size_of_array_{0}; // количество элементов в массиве
+    std::ptrdiff_t size_of_memory_{0}; // количество элементов в массиве под которые выделена память
+    double* data_pointer_{nullptr}; // указатель на выделенную память
 };
 
 #endif //ARRAYD_HPP

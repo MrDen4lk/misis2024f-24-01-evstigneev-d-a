@@ -27,7 +27,7 @@ std::istream& Rational::read(std::istream& instream) {
     std::int64_t denominator{1};
     char mid_point{'/'};
     instream >> numerator >> mid_point >> denominator;
-    if (denominator == 0) {
+    if (denominator <= 0) {
         throw std::runtime_error("Zero denominator");
     }
     if (instream.good() || instream.eof()) {
