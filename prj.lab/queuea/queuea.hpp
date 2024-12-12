@@ -8,12 +8,14 @@
 class QueueA {
 public:
     using T = std::uint8_t;
-public:
+
     // Умолчательный конструктор
     QueueA() = default;
 
-    // конструктор оот ссылки на queuea
+    // конструкторы
     QueueA(QueueA&& src) noexcept;
+
+    QueueA(const QueueA& src);
 
     // деструктор
     ~QueueA() = default;
@@ -23,8 +25,10 @@ public:
 
     QueueA& operator=(QueueA&& src);
 
-    // Добавление элемента в стек
-    void Push(std::uint8_t value);
+    // удаление элемента в Top
+    void Pop() noexcept;
+
+    void Push(const T val);
 
     // Удаление элемента из top
     void Pop() noexcept;

@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <cstddef>
 #include <cstring>
+#include <algorithm>
 
 ArrayD::ArrayD(const std::ptrdiff_t size)
     : size_of_array_(size)

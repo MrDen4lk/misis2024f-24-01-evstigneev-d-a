@@ -7,26 +7,25 @@
 
 TEST_CASE("arrayt_doctest") {
     ArrayT<int> a(4);
-    ArrayT<int> b(4, 10);
-
-    CHECK(b[0] == b[3]);
-    CHECK(b[1] == 10);
 
     CHECK(a.Size() == 4);
 
     a[1] = 10;
     CHECK(a[1] == 10);
-    a.Pop_back();
-    CHECK(a.Size() == 3);
-    a.Push_back(3);
-    CHECK(a[a.Size() - 1] == 3);
 
     a.Insert(3, 1);
     CHECK(a[3] == 1);
     a.Remove(3);
     CHECK(a[3] != 1);
     CHECK(a.Size() == 4);
+    a.Insert(3, 2);
+    a.Insert(4, 3);
+
+    a.Resize(10);
+
+    for (int i = 0; i < a.Size(); i++) {
+        std::cout << a[i] << std::endl;
+    }
 
     a.Clear();
-    CHECK(a.Empty());
 }

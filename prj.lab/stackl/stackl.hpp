@@ -44,10 +44,10 @@ public:
 private:
     // Узел для хранения одного элемента стека
     struct Node {
-        std::unique_ptr<Node> next_{nullptr}; // Указатель на следующий узел
         T value_{T()}; // Значение элемента
+        std::unique_ptr<Node> next_{nullptr}; // Указатель на следующий узел
 
-        explicit Node(const T val) : next_(nullptr), value_(val) {}
+        Node (const T& value) : value_(value) {}
     };
     // Указание на top
     std::unique_ptr<Node> head_{nullptr};

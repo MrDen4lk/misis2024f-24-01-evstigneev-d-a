@@ -1,7 +1,9 @@
 #include <stackl/stackl.hpp>
-#include <cstdint>
+
 #include <memory>
 #include <stdexcept>
+#include <algorithm>
+#include <iostream>
 
 void StackL::Push(const T value) {
     auto tmp = std::unique_ptr<Node>(new Node(value));
@@ -40,7 +42,20 @@ bool StackL::IsEmpty() const noexcept {
 }
 
 StackL& StackL::operator=(const StackL& src) {
-
+	if (this != &src) {
+	    Clear();
+	    if (!src.IsEmpty()) {
+	        head_ = std::make_unique<Node>(src.head_->value_);
+	        Node* prev_src = src.head_.get();
+	        Node* prev_new = head_.get();
+	        while (prev_src->next_) {
+	            prev_new->next_ = std::make_unique<Node>(prev_src->next_->value_);
+	            prev_new = prev_new->next_.get();
+	            prev_src = prev_src->next_.get();
+	        }
+	    }
+	}
+	return *this;
 }
 
 StackL& StackL::operator=(StackL&& src) noexcept {
@@ -49,9 +64,18 @@ StackL& StackL::operator=(StackL&& src) noexcept {
 }
 
 StackL::StackL(const StackL& src) {
-
+    if (!src.IsEmpty()) {
+        head_ = std::make_unique<Node>(src.head_->value_);
+        Node* prev_src = src.head_.get();
+        Node* prev_new = head_.get();
+        while (prev_src->next_) {
+        	prev_new->next_ = std::make_unique<Node>(prev_src->next_->value_);
+            prev_new = prev_new->next_.get();
+            prev_src = prev_src->next_.get();
+        }
+    }
 }
 
-StackL::StackL(const StackL& src) {
-
+StackL::StackL(StackL&& src) noexcept {
+    std::swap(head_, src.head_);
 }
