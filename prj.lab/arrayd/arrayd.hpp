@@ -31,7 +31,7 @@ public:
     void Resize(const std::ptrdiff_t size);
 
     // вставить на место position значение value
-    void Insert(const std::ptrdiff_t position, double value);
+    void Insert(const std::ptrdiff_t position, const double value);
 
     // удалить позицию position
     void Remove(const std::ptrdiff_t position);

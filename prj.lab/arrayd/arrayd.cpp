@@ -64,7 +64,7 @@ void ArrayD::Resize(const std::ptrdiff_t size) {
         size_of_memory_ = size;
     } else {
         if (size_of_array_ < size) {
-            std::memset(data_pointer_ + size, 0, (size - size_of_array_) * sizeof(*data_pointer_));
+            std::memset(data_pointer_ + size_of_array_, 0, (size - size_of_array_) * sizeof(*data_pointer_));
         }
     }
     size_of_array_ = size;

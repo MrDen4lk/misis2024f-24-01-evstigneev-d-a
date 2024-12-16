@@ -1,5 +1,5 @@
-#ifndef QUEUE_HPP
-#define QUEUE_HPP
+#ifndef QUEUEA_HPP
+#define QUEUEA_HPP
 
 #include <cstdint>
 #include <cstddef>
@@ -28,10 +28,8 @@ public:
     // удаление элемента в Top
     void Pop() noexcept;
 
-    void Push(const T val);
-
-    // Удаление элемента из top
-    void Pop() noexcept;
+    // добавление элемента
+    void Push(const T value);
 
     // Проверка на пустоту
     bool IsEmpty() const noexcept;
@@ -49,9 +47,9 @@ private:
     std::ptrdiff_t size_{0};
     std::ptrdiff_t head_{0};
     std::ptrdiff_t tail_{0};
-    std::unique_ptr<std::uint8_t[]> data_;
+    std::unique_ptr<T[]> data_;
 
     void Resize();
 };
 
-#endif //QUEUE_HPP
+#endif //QUEUEA_HPP

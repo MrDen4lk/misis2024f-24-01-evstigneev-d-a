@@ -26,6 +26,4 @@ TEST_CASE("arrayt_doctest") {
     for (int i = 0; i < a.Size(); i++) {
         std::cout << a[i] << std::endl;
     }
-
-    a.Clear();
 }

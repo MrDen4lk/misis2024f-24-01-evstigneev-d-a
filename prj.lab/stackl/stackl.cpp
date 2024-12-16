@@ -1,12 +1,12 @@
+#include <memory>
 #include <stackl/stackl.hpp>
 
 #include <memory>
 #include <stdexcept>
 #include <algorithm>
-#include <iostream>
 
 void StackL::Push(const T value) {
-    auto tmp = std::unique_ptr<Node>(new Node(value));
+    auto tmp = std::make_unique<Node>(value);
     tmp->next_ = std::move(head_);
     head_ = std::move(tmp);
 }
