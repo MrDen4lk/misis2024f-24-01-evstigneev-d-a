@@ -52,8 +52,8 @@ private:
 template<class T>
 ArrayT<T>::ArrayT(const ArrayT<T>& array)
     : size_of_array_(array.size_of_array_)
-    , size_of_memory_(array.size_of_memory_) {
-    data_pointer_ = std::make_unique<T[]>(array.size_of_array_);
+    , size_of_memory_(array.size_of_memory_)
+    , data_pointer_(std::make_unique<T[]>(array.size_of_array_)) {
     std::copy(array.data_pointer_.get(), array.data_pointer_.get() + size_of_array_, data_pointer_.get());
 }
 

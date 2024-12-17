@@ -18,5 +18,5 @@ target_link_libraries(arrayt_doctest arrayt)
 add_executable(stackl_doctest stackl_doctest.cpp)
 target_link_libraries(stackl_doctest stackl)
 
-add_executable(queuea_doctest queue_doctest.cpp)
+add_executable(queuea_doctest queuea_doctest.cpp)
 target_link_libraries(queuea_doctest queuea)
