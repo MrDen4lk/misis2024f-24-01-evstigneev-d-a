@@ -1,6 +1,7 @@
 #include <complex/complex.hpp>
 #include <sstream>
 #include <stdexcept>
+#include <cmath>
 
 std::ostream& Complex::write(std::ostream& outstream) const noexcept {
     return outstream << left_point << re << mid_point << im << right_point;
@@ -26,11 +27,11 @@ std::istream& Complex::read(std::istream& instream) noexcept {
 }
 
 bool operator==(const Complex& lhs, const Complex& rhs) noexcept { 
-    return ((std::fabs(rhs.re - lhs.re) < std::numeric_limits<double>::epsilon())
-    && (std::fabs(rhs.im - lhs.im) < std::numeric_limits<double>::epsilon()));
+    return ((abs(rhs.re - lhs.re) < 2 * std::numeric_limits<double>::epsilon())
+    && (abs(rhs.im - lhs.im) < 2 * std::numeric_limits<double>::epsilon()));
 }
 
-bool operator!=(const Complex& lhs, const Complex& rhs) noexcept {  { return !(lhs == rhs); }; }
+bool operator!=(const Complex& lhs, const Complex& rhs) noexcept {  return !(lhs == rhs); }
 
 Complex Complex::operator-() const noexcept { return Complex(-re, -im); }
 
@@ -89,8 +90,7 @@ Complex& Complex::operator+=(const Complex& rhs) noexcept {
 }
 
 Complex& Complex::operator+=(const double rhs) noexcept {
-    re += rhs;
-    return *this; 
+    return operator+=(Complex(rhs));
 }
 
 Complex& Complex::operator-=(const Complex& rhs) noexcept {
@@ -100,8 +100,7 @@ Complex& Complex::operator-=(const Complex& rhs) noexcept {
 }
 
 Complex& Complex::operator-=(const double rhs) noexcept {
-    re -= rhs;
-    return *this;
+    return operator-=(Complex(rhs));
 }
 
 Complex& Complex::operator*=(const Complex& rhs) noexcept {
@@ -113,9 +112,7 @@ Complex& Complex::operator*=(const Complex& rhs) noexcept {
 }
 
 Complex& Complex::operator*=(const double rhs) noexcept {
-    re *= rhs;
-    im *= rhs;
-    return *this;
+    return operator*=(Complex(rhs));
 }
 
 Complex& Complex::operator/=(const Complex& rhs) {
@@ -130,10 +127,5 @@ Complex& Complex::operator/=(const Complex& rhs) {
 }
 
 Complex& Complex::operator/=(const double rhs) {
-    if (rhs == 0.0) {
-        throw std::runtime_error("Division by zero");
-    }
-    re /= rhs;
-    im /= rhs;
-    return *this;
+    return operator/=(Complex(rhs));
 }

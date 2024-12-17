@@ -26,9 +26,19 @@ std::istream& Rational::read(std::istream& instream) {
     std::int64_t numerator{0};
     std::int64_t denominator{1};
     char mid_point{'/'};
-    instream >> numerator >> mid_point >> denominator;
+
+    instream >> numerator;
+    if (instream.peek() == ' ') {
+        throw std::runtime_error("Invalid input");
+    }
+    instream >> mid_point;
+    if (instream.peek() == ' ') {
+        throw std::runtime_error("Invalid input");
+    }
+    instream >> denominator;
+
     if (denominator <= 0) {
-        throw std::runtime_error("Zero denominator");
+        throw std::runtime_error("Non positive denominator");
     }
     if (instream.good() || instream.eof()) {
         if (mid_point == Rational::mid_point) {

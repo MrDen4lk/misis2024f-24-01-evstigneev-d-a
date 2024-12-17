@@ -87,8 +87,9 @@ void test_not_eq(const Rational& lhs, const Rational& rhs, const bool& res) {
 TEST_CASE("[rational] - ctor") {
     test_input("26/13");
     test_input("13/3");
-    test_input("-1 / 4");
-    test_input("-1 / 1");
+    test_input("-1/4");
+    test_input("-1/1");
+    test_input("-1/2");
 
     test_add(Rational(1, 2), Rational(1, 2), Rational(1, 1));
     test_add(Rational(1, 2), Rational(3, 1), Rational(7, 2));
