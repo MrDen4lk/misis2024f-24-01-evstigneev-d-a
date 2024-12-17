@@ -44,12 +44,13 @@ public:
 
 private:
     std::ptrdiff_t capacity_{0};
-    std::ptrdiff_t size_{0};
-    std::ptrdiff_t head_{0};
-    std::ptrdiff_t tail_{0};
+    std::ptrdiff_t head_{-1};
+    std::ptrdiff_t tail_{-1};
     std::unique_ptr<T[]> data_;
 
     void Resize();
+    void Resize_up(std::ptrdiff_t count);
+    void Swap(QueueA&& src) noexcept;
 };
 
 #endif //QUEUEA_HPP

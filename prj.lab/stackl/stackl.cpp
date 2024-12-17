@@ -1,8 +1,6 @@
-#include <memory>
 #include <stackl/stackl.hpp>
-
-#include <memory>
 #include <stdexcept>
+#include <memory>
 #include <algorithm>
 
 void StackL::Push(const T value) {
