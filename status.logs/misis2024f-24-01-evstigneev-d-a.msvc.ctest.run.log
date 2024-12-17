@@ -27,7 +27,7 @@ Release/D:/projects/misis2024f-check/misis2024f-24-01-evstigneev-d-a/bin.check/d
 2/8 Test #7: doctest_queuea ...................***Not Run   0.00 sec
     Start 8: doctest_stackl
 3/8 Test #1: doctest_arrayd ...................   Passed    0.02 sec
-4/8 Test #3: doctest_complex ..................***Failed    0.02 sec
+4/8 Test #3: doctest_complex ..................***Failed    0.01 sec
 5/8 Test #4: doctest_complex_io ...............   Passed    0.01 sec
 6/8 Test #5: doctest_rational .................   Passed    0.01 sec
 7/8 Test #6: doctest_rational_io ..............***Failed    0.01 sec
