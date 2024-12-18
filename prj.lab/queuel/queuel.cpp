@@ -18,11 +18,13 @@ bool QueueL::IsEmpty() const noexcept {
 
 void QueueL::Push(const T value) {
     const auto tmp = new Node(value);
-    tmp->next_ = tail_;
     if (IsEmpty()) {
         head_ = tmp;
+        tail_ = tmp;
+    } else {
+        tail_->next_ = tmp;
+        tail_ = tmp;
     }
-    tail_ = tmp;
 }
 
 void QueueL::Pop() noexcept {

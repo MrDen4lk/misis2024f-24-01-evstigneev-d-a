@@ -9,10 +9,10 @@ TEST_CASE("[queuel] - ctor") {
     a.Push(10);
     CHECK(a.Top() == 10);
     a.Push(20);
-    CHECK(a.Top() == 20);
+    CHECK(a.Top() == 10);
     a.Pop();
     a.Push(30);
     CHECK(a.Top() == 20);
-    //a.Clear();
-    //CHECK(a.IsEmpty());
+    a.Clear();
+    CHECK(a.IsEmpty());
 }
