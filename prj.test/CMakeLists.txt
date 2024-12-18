@@ -20,3 +20,6 @@ target_link_libraries(stackl_doctest stackl)
 
 add_executable(queuea_doctest queuea_doctest.cpp)
 target_link_libraries(queuea_doctest queuea)
+
+add_executable(queuel_doctest queuel_doctest.cpp)
+target_link_libraries(queuel_doctest queuel)

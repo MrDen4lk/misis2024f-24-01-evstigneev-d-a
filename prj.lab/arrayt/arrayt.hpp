@@ -79,7 +79,7 @@ void ArrayT<T>::Resize(std::ptrdiff_t size) {
     }
     if (size_of_memory_ < size) {
         auto data = std::make_unique<T[]>(size);
-        if (0 < size) {
+        if (size > 0) {
             std::copy(data_pointer_.get(), data_pointer_.get() + size_of_array_, data.get());
         }
         std::swap(data_pointer_, data);
