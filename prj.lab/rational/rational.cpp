@@ -26,22 +26,23 @@ std::istream& Rational::read(std::istream& instream) {
     std::int64_t numerator{0};
     std::int64_t denominator{1};
     char mid_point{'/'};
+    bool flag = false;
 
     instream >> numerator;
     if (instream.peek() == ' ') {
-        throw std::runtime_error("Invalid input");
+        flag = true;
     }
     instream >> mid_point;
     if (instream.peek() == ' ') {
-        throw std::runtime_error("Invalid input");
+        flag = true;
     }
     instream >> denominator;
 
     if (denominator <= 0) {
-        throw std::runtime_error("Non positive denominator");
+        flag = true;
     }
     if (instream.good() || instream.eof()) {
-        if (mid_point == Rational::mid_point) {
+        if (mid_point == Rational::mid_point && !flag) {
             update(numerator, denominator);
         } else {
             instream.setstate(std::ios_base::failbit);

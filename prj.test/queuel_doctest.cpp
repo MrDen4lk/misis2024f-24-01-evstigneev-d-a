@@ -15,4 +15,7 @@ TEST_CASE("[queuel] - ctor") {
     CHECK(a.Top() == 20);
     a.Clear();
     CHECK(a.IsEmpty());
+    a.Push(40);
+    a.Pop();
+    CHECK(a.IsEmpty());
 }

@@ -77,9 +77,6 @@ QueueA::T& QueueA::Top() {
 
 void QueueA::Clear() noexcept {
     head_ = -1;
-    tail_ = -1;
-    capacity_ = 0;
-    data_.reset(nullptr);
 }
 
 bool QueueA::IsEmpty() const noexcept {

@@ -1,12 +1,20 @@
 #include <queuel/queuel.hpp>
+#include <algorithm>
 
 //QueueL::QueueL(const QueueL &src) {}
 
-//QueueL::QueueL(QueueL &&src) noexcept {}
+QueueL::QueueL(QueueL &&src) noexcept {
+    std::swap(head_, src.head_);
+    std::swap(tail_, src.tail_);
+}
 
 //QueueL& QueueL::operator=(const QueueL &src) {}
 
-//QueueL& QueueL::operator=(QueueL &&src) noexcept {}
+QueueL& QueueL::operator=(QueueL &&src) noexcept {
+    std::swap(head_, src.head_);
+    std::swap(tail_, src.tail_);
+    return *this;
+}
 
 QueueL::~QueueL() {
     delete head_;
